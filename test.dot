@@ -1,0 +1,66 @@
+digraph Tree {
+    node [shape=circle];
+    nodeFUNC_0 [label="FUNC"]
+    nodeFUNC_0 -> nodeint_1;
+    nodeint_1 [label="int"]
+    nodeFUNC_0 -> nodemain_2;
+    nodemain_2 [label="main"]
+    nodeFUNC_0 -> nodeARG_3;
+    nodeARG_3 [label="ARG"]
+    nodeARG_3 -> nodeint_4;
+    nodeint_4 [label="int"]
+    nodeARG_3 -> nodea_5;
+    nodea_5 [label="a"]
+    nodeFUNC_0 -> nodeARG_6;
+    nodeARG_6 [label="ARG"]
+    nodeARG_6 -> nodeint_7;
+    nodeint_7 [label="int"]
+    nodeARG_6 -> nodeb_8;
+    nodeb_8 [label="b"]
+    nodeFUNC_0 -> nodeSLIST_9;
+    nodeSLIST_9 [label="SLIST"]
+    nodeSLIST_9 -> nodeVAR_10;
+    nodeVAR_10 [label="VAR"]
+    nodeVAR_10 -> nodeint_11;
+    nodeint_11 [label="int"]
+    nodeVAR_10 -> nodei_12;
+    nodei_12 [label="i"]
+    nodeSLIST_9 -> nodefor_13;
+    nodefor_13 [label="for"]
+    nodefor_13 -> nodei_14;
+    nodei_14 [label="i"]
+    nodefor_13 -> node=_15;
+    node=_15 [label="="]
+    nodefor_13 -> node0_16;
+    node0_16 [label="0"]
+    nodefor_13 -> node!=_17;
+    node!=_17 [label="!="]
+    node!=_17 -> nodei_18;
+    nodei_18 [label="i"]
+    node!=_17 -> node3_19;
+    node3_19 [label="3"]
+    nodefor_13 -> nodei_20;
+    nodei_20 [label="i"]
+    nodefor_13 -> node=_21;
+    node=_21 [label="="]
+    nodefor_13 -> node+_22;
+    node+_22 [label="+"]
+    node+_22 -> nodei_23;
+    nodei_23 [label="i"]
+    node+_22 -> node1_24;
+    node1_24 [label="1"]
+    nodefor_13 -> nodeSLIST_25;
+    nodeSLIST_25 [label="SLIST"]
+    nodeSLIST_25 -> nodex_26;
+    nodex_26 [label="x"]
+    nodeSLIST_25 -> node=_27;
+    node=_27 [label="="]
+    nodeSLIST_25 -> node3_28;
+    node3_28 [label="3"]
+    nodeSLIST_25 -> nodey_29;
+    nodey_29 [label="y"]
+    nodeSLIST_25 -> node=_30;
+    node=_30 [label="="]
+    nodeSLIST_25 -> node5_31;
+    node5_31 [label="5"]
+}
