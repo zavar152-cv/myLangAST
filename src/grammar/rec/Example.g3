@@ -18,6 +18,7 @@ tokens {
     PLUS;
     MINUS;
     MUL;
+    ASSIGN;
     NEG;
     NOT;
     BOOL;
@@ -32,12 +33,19 @@ tokens {
     ARRAY_TYPE;
     SOURCE_ITEM;
     VAR;
+    SOURCE;
 }
 
 source
-    : var
-    | expr
+    :
+    sourceItem+ -> ^(SOURCE sourceItem+)
     ;
+
+sourceItem
+    : var ';' -> var
+    | expr ';' -> expr
+    ;
+
 
 var
     : typeRef identifier -> ^(VAR typeRef identifier)
@@ -45,7 +53,7 @@ var
 
 
 typeRef
-    : baseType (arraySuffix)*  // Base types followed by optional array suffixes
+    : baseType (arraySuffix)* 
     ;
 
 baseType
@@ -54,14 +62,14 @@ baseType
     ;
 
 builtinType
-    : 'bool'
-    | 'byte'
-    | 'int'
-    | 'uint'
-    | 'long'
-    | 'ulong'
-    | 'char'
-    | 'string'
+    : boolType
+    | byteType
+    | intType
+    | uintType
+    | longType
+    | ulongType
+    | charType
+    | stringType
     ;
 
 customType
@@ -69,7 +77,6 @@ customType
     -> ^(CUSTOM_TYPE identifier)
     ;
 
-// Array suffix rule to handle array types
 arraySuffix
     : '[' (typeRef (',' typeRef)*)? ']' -> ^(ARRAY_TYPE typeRef (typeRef)*)
     ;
@@ -86,11 +93,11 @@ term
     ;
 
 unary
-    : unOp^ expr
+    : unOp^ term
     ;
 
 braces
-    : '(' expr ')'
+    : '(' expr ')' -> expr
     ;
 
 place
@@ -107,7 +114,8 @@ literal
     ;
 
 binOp
-    : plus -> PLUS
+    : assign -> ASSIGN
+    | plus -> PLUS
     | minus -> MINUS
     | mul -> MUL
     ;
@@ -117,7 +125,6 @@ unOp
     | exclMark -> NOT
     ;
 
-// Terminal
 identifier: IDENTIFIER_TOKEN;
 
 str: STR_TOKEN;
@@ -130,11 +137,31 @@ minus: MINUS_TOKEN;
 exclMark: EXCL_MARK_TOKEN;
 plus: PLUS_TOKEN;
 mul: MUL_TOKEN;
+assign: ASSIGN_TOKEN;
+
+boolType: BOOL_TYPE;
+byteType: BYTE_TYPE;
+intType: INT_TYPE;
+uintType: UINT_TYPE;
+longType: LONG_TYPE;
+ulongType: ULONG_TYPE;
+charType: CHAR_TYPE;
+stringType: STRING_TYPE;
 
 MINUS_TOKEN: '-';
 EXCL_MARK_TOKEN: '!';
 PLUS_TOKEN: '+';
 MUL_TOKEN: '*';
+ASSIGN_TOKEN: '=';
+
+BOOL_TYPE: 'bool';
+BYTE_TYPE: 'byte';
+INT_TYPE: 'int';
+UINT_TYPE: 'uint';
+LONG_TYPE: 'long';
+ULONG_TYPE: 'ulong';
+CHAR_TYPE: 'char';
+STRING_TYPE: 'string';
 
 BOOL_TOKEN: (TRUE | FALSE) ;
 IDENTIFIER_TOKEN: (ALPHA | SPECIAL) (ALPHA | SPECIAL | DIGIT)* ;

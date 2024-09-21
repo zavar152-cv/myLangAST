@@ -1,8 +1,46 @@
 digraph Tree {
-    node [shape=circle];
-    nodeBUILTIN_TYPE_0 [label="BUILTIN_TYPE"]
-    nodeBUILTIN_TYPE_0 -> nodeint_1;
-    nodeint_1 [label="int"]
-    nodeBUILTIN_TYPE_0 -> nodea_2;
-    nodea_2 [label="a"]
+    node [shape=hexagon];
+    nodeSOURCE_0 [label="SOURCE"]
+    nodeSOURCE_0 -> nodeASSIGN_1;
+    nodeASSIGN_1 [label="ASSIGN"]
+    nodeASSIGN_1 -> nodeIDENTIFIER_2;
+    nodeIDENTIFIER_2 [label="IDENTIFIER"]
+    nodeIDENTIFIER_2 -> nodek_3;
+    nodek_3 [label="k"]
+    nodeASSIGN_1 -> nodeDEC_4;
+    nodeDEC_4 [label="DEC"]
+    nodeDEC_4 -> node1_5;
+    node1_5 [label="1"]
+    nodeSOURCE_0 -> nodeVAR_6;
+    nodeVAR_6 [label="VAR"]
+    nodeVAR_6 -> nodeint_7;
+    nodeint_7 [label="int"]
+    nodeVAR_6 -> nodea_8;
+    nodea_8 [label="a"]
+    nodeSOURCE_0 -> nodeVAR_9;
+    nodeVAR_9 [label="VAR"]
+    nodeVAR_9 -> nodechar_10;
+    nodechar_10 [label="char"]
+    nodeVAR_9 -> nodeb_11;
+    nodeb_11 [label="b"]
+    nodeSOURCE_0 -> nodeMUL_12;
+    nodeMUL_12 [label="MUL"]
+    nodeMUL_12 -> nodePLUS_13;
+    nodePLUS_13 [label="PLUS"]
+    nodePLUS_13 -> nodeNEG_14;
+    nodeNEG_14 [label="NEG"]
+    nodeNEG_14 -> nodeNEG_15;
+    nodeNEG_15 [label="NEG"]
+    nodeNEG_15 -> nodeIDENTIFIER_16;
+    nodeIDENTIFIER_16 [label="IDENTIFIER"]
+    nodeIDENTIFIER_16 -> nodea_17;
+    nodea_17 [label="a"]
+    nodePLUS_13 -> nodeIDENTIFIER_18;
+    nodeIDENTIFIER_18 [label="IDENTIFIER"]
+    nodeIDENTIFIER_18 -> nodec_19;
+    nodec_19 [label="c"]
+    nodeMUL_12 -> nodeDEC_20;
+    nodeDEC_20 [label="DEC"]
+    nodeDEC_20 -> node5_21;
+    node5_21 [label="5"]
 }

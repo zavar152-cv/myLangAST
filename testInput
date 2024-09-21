@@ -1,1 +1,4 @@
-int a
+k = 1;
+int a;
+char b;
+--a + c * 5;

@@ -77,7 +77,7 @@ void generateDotFile(struct DotNode* root, const char *filename) {
   }
 
   fprintf(file, "digraph Tree {\n");
-  fprintf(file, "    node [shape=circle];\n");
+  fprintf(file, "    node [shape=hexagon];\n");
 
   writeTreeToDot(file, root);
 
@@ -115,6 +115,8 @@ int main(int argc, char *argv[]) {
     printErrors(&errorContext);
   } else {
     pANTLR3_BASE_TREE tree = r.tree;
+    printf("%s\n", tree->toStringTree(tree)->chars);
+    printf("%u\n", tree->getChildCount(tree));
     uint64_t id = 0;
     dotTree = preorderTraversalWithCopy(tree, 0, &id);
     generateDotFile(dotTree, "./test.dot");
