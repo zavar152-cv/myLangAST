@@ -3,7 +3,7 @@
 
 #include "ExampleLexer.h"
 #include "ExampleParser.h"
-#include "errorsUtil/error.h"
+#include "errorsUtils/error.h"
 #include "dotUtils/dotUtils.h"
 
 void getRecognitionError(pANTLR3_BASE_RECOGNIZER recognizer,
