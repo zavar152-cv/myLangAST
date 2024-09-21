@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
   parser->pParser->rec->state->userp = &errorContext;
   parser->pParser->rec->displayRecognitionError = getRecognitionError;
 
-  ExampleParser_program_return r = parser->program(parser);
+  ExampleParser_source_return r = parser->source(parser);
   ANTLR3_UINT32 errCount = parser->pParser->rec->state->errorCount;
 
 

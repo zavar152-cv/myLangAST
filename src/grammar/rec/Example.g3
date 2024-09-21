@@ -8,103 +8,151 @@ options {
 } // build trees
 
 tokens {
-  VAR;   // variable definition
-  FUNC;  // function definition
-  ARG;   // formal argument
-  SLIST; // statement list
-  EQ;
-  PLUS;
+    EXPR;
+    TERM;
+    BINARY_OP;
+    UNARY_OP;
+    BRACES;
+    PLACE;
+    LITERAL;
+    PLUS;
+    MINUS;
+    MUL;
+    NEG;
+    NOT;
+    BOOL;
+    STR;
+    RUNE;
+    HEX;
+    BITS;
+    DEC;
+    IDENTIFIER;
+    BUILTIN_TYPE;
+    CUSTOM_TYPE;
+    ARRAY_TYPE;
+    SOURCE_ITEM;
+    VAR;
 }
-// END:header
 
-// START:decl
-program
-    :   declaration+
+source
+    : var
+    | expr
     ;
 
-declaration
-    :   variable
-    |   function
+var
+    : typeRef identifier -> ^(VAR typeRef identifier)
     ;
 
-variable
-    :   type id ';' -> ^(VAR type id)
+
+typeRef
+    : baseType (arraySuffix)*  // Base types followed by optional array suffixes
     ;
 
-type:   intT 
-    |   chrT
-    ;
-// END:decl
-
-// START:func
-// E.g., int f(int x, char y) { ... }
-function
-    :   type id
-        '(' ( formalParameter (',' formalParameter)* )?  ')'
-        block
-        -> ^(FUNC type id formalParameter* block)
+baseType
+    : builtinType
+    | customType
     ;
 
-formalParameter
-    :   type id -> ^(ARG type id)
+builtinType
+    : 'bool'
+    | 'byte'
+    | 'int'
+    | 'uint'
+    | 'long'
+    | 'ulong'
+    | 'char'
+    | 'string'
     ;
 
-// END:func
-
-// START:state
-block
-    :   lc='{' variable* state* '}'
-        -> ^(SLIST[$lc,"SLIST"] variable* state*)
+customType
+    : identifier
+    -> ^(CUSTOM_TYPE identifier)
     ;
 
-state: forStat
-    | expr ';'!
-    | block
-    | assignStat ';'!
-    | ';'!
+// Array suffix rule to handle array types
+arraySuffix
+    : '[' (typeRef (',' typeRef)*)? ']' -> ^(ARRAY_TYPE typeRef (typeRef)*)
     ;
 
-forStat
-    :   'for' '(' first=assignStat ';' expr ';' inc=assignStat ')' block
-        -> ^('for' $first expr $inc block)
+expr
+    : l=term (binOp^ r=term)*
     ;
 
-assignStat
-    :   id '=' expr
-    ;
-// END:state
-
-// START:expr
-expr:   condExpr ;
-
-condExpr
-    :   aexpr ( ('=='^|'!='^) aexpr )?
+term
+    : unary
+    | braces
+    | place
+    | literal
     ;
 
-aexpr
-    :   mexpr ('+'^ mexpr)*
+unary
+    : unOp^ expr
     ;
 
-mexpr
-    :   atom ('*'^ atom)*
+braces
+    : '(' expr ')'
     ;
 
-atom:   id
-    |   intE
-    |   '(' expr ')' -> expr
+place
+    : identifier -> ^(IDENTIFIER identifier)
     ;
-// END:expr
 
-id: ID;
-intE: INT;
+literal
+    : bool -> ^(BOOL bool)
+    | str -> ^(STR str)
+    | rune -> ^(RUNE rune)
+    | hex -> ^(HEX hex)
+    | bits -> ^(BITS bits)
+    | dec -> ^(DEC dec)
+    ;
 
-intT: 'int';
-chrT: 'char';
+binOp
+    : plus -> PLUS
+    | minus -> MINUS
+    | mul -> MUL
+    ;
+//| '/' | '==' | '!=' | '<' | '>' | '<=' | '>=' 
+unOp
+    : minus -> NEG
+    | exclMark -> NOT
+    ;
 
-// START:tokens
-ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
+// Terminal
+identifier: IDENTIFIER_TOKEN;
 
-INT :   ('0'..'9')+ ;
+str: STR_TOKEN;
+rune: CHAR_TOKEN;
+hex: HEX_TOKEN;
+bits: BITS_TOKEN;
+dec: DEC_TOKEN;
+bool: BOOL_TOKEN;
+minus: MINUS_TOKEN;
+exclMark: EXCL_MARK_TOKEN;
+plus: PLUS_TOKEN;
+mul: MUL_TOKEN;
 
-WS  :   ( ' ' | '\t' | '\r' | '\n' )+ { $channel = HIDDEN; } ;    
-// END:tokens
+MINUS_TOKEN: '-';
+EXCL_MARK_TOKEN: '!';
+PLUS_TOKEN: '+';
+MUL_TOKEN: '*';
+
+BOOL_TOKEN: (TRUE | FALSE) ;
+IDENTIFIER_TOKEN: (ALPHA | SPECIAL) (ALPHA | SPECIAL | DIGIT)* ;
+BITS_TOKEN: '0' ('b'|'B') BINARY_DIGIT+ ;
+HEX_TOKEN: '0'('x'|'X') HEX_DIGIT+ ;
+DEC_TOKEN: DIGIT+ ;
+CHAR_TOKEN: '\'' ~('\'') '\'' ;
+STR_TOKEN: ('"') ('\\' . | ~('\\'|'"'))* ('"') ;
+
+NEWLINE:'\r'? '\n' { SKIP(); };
+WSS: WS+ { SKIP(); };
+
+
+fragment TRUE: 'true';
+fragment FALSE: 'false';
+fragment ALPHA: ('a'..'z' | 'A'..'Z');
+fragment SPECIAL: ('_');
+fragment DIGIT: ('0'..'9');
+fragment BINARY_DIGIT: ('0' | '1');
+fragment HEX_DIGIT: ('0'..'9' | 'a'..'f' | 'A'..'F');
+fragment WS:(' '|'\t') ;

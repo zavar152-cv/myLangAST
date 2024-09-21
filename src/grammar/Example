@@ -1,142 +1,114 @@
+// START:header
 grammar Example;
 
 options {
-  language=C;
-  output=AST;
-  ASTLabelType = pANTLR3_BASE_TREE;
-}
-
+    language=C;
+    output=AST;
+    ASTLabelType = pANTLR3_BASE_TREE;
+} // build trees
 
 tokens {
-    METHOD;
+  VAR;   // variable definition
+  FUNC;  // function definition
+  ARG;   // formal argument
+  SLIST; // statement list
+  EQ;
+  NEQ;
+  MUL;
+  PLUS;
+  ASSIGN;
+  PARENS;
 }
+// END:header
 
-// Sources
-source
-  : source_item+ ;
+// START:decl
+program
+    :   declaration+
+    ;
 
-source_item
-  : func_def
-  ;
+declaration
+    :   variable
+    |   function
+    ;
 
+variable
+    :   type id ';' -> ^(VAR type id)
+    ;
 
-// Types
-type_ref
-  : 'bool' | 'byte' | 'int' | 'uint' | 'long' | 'ulong' | 'char' | 'string'
-  | identifier
-  | 'array' '[' (',')* ']' 'of' type_ref
-  ;
+type:   intT 
+    |   chrT
+    ;
+// END:decl
 
+// START:func
+// E.g., int f(int x, char y) { ... }
+function
+    :   type id
+        '(' ( formalParameter (',' formalParameter)* )?  ')'
+        block
+        -> ^(FUNC type id formalParameter* block)
+    ;
 
-// Functions
-func_def
-  : 'method'^ func_signature (func_body | ';')
-  ;
+formalParameter
+    :   type id -> ^(ARG type id)
+    ;
 
-func_signature
-  : identifier '('! (arg_def (',' arg_def)* )? ')'! (':' type_ref)?
-  ;
+// END:func
 
-arg_def
-  : identifier (':' type_ref)?
-  ;
+// START:state
+block
+    :   lc='{' variable* state* '}'
+        -> ^(SLIST[$lc,"SLIST"] variable* state*)
+    ;
 
-func_body
-  : ('var' ( (identifier (',' identifier)*)? (':' type_ref)? ';' )* )? statement_block
-  ;
+state: forStat
+    | expr ';'!
+    | block
+    | assignStat ';'!
+    | ';'!
+    ;
 
+forStat
+    :   'for' '(' first=assignStat ';' expr ';' inc=assignStat ')' block
+        -> ^('for' $first expr $inc block)
+    ;
 
-// Statement
-statement
-  : statement_if
-  | statement_block
-  | statement_while
-  | statement_do
-  | statement_break
-  | statement_expression
-  ;
+assignStat
+    :   id '=' expr -> ^(ASSIGN id expr)
+    ;
+// END:state
 
-statement_block
-  : 'begin'^ statement* 'end' ';'
-  ;
-  
-statement_if
-  : 'if'^ expr 'then' statement ('else' statement)?
-  ;
+// START:expr
+expr:   condExpr ;
 
-statement_while
-  : 'while'^ expr 'do' statement
-  ;
+condExpr
+    :   aexpr ( ('=='^|'!='^) aexpr )?
+    ;
 
-statement_do
-  : 'repeat'^ statement ('while' | 'until') expr ';'
-  ;
+aexpr
+    :   mexpr ('+'^ mexpr)*
+    ;
 
-statement_break
-  : 'break'^
-  ;
+mexpr
+    :   atom ('*'^ atom)*
+    ;
 
-statement_expression
-  : expr^
-  ;
+atom:   id
+    |   intE
+    |   '(' expr ')' -> expr
+    ;
+// END:expr
 
+id: ID;
+intE: INT;
 
-// Expressions
-expr
-  : expr_literal
-//  | expr_binary
-  | expr_unary
-  | expr_braces
-//  | expr_call
-//  | expr_indexer
-  | expr_place
-  ;
+intT: 'int';
+chrT: 'char';
 
-expr_literal
-  : bool | str | rune | hex | bits | dec
-  ;
+// START:tokens
+ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
 
-expr_braces
-  : '('! expr^ ')'!
-  ;
+INT :   ('0'..'9')+ ;
 
-expr_place
-  : identifier^
-  ;
-
-expr_unary
-  : ('+' | '-')^ expr
-  ;
-
-
-// Terminal
-identifier: IDENTIFIER;
-
-str: STR;
-rune: CHAR;
-hex: HEX;
-bits: BITS;
-dec: DEC;
-bool: BOOL;
-
-
-BOOL: (TRUE | FALSE) ;
-IDENTIFIER: (ALPHA | SPECIAL) (ALPHA | SPECIAL | DIGIT)* ;
-BITS: '0' ('b'|'B') BINARY_DIGIT+ ;
-HEX: '0'('x'|'X') HEX_DIGIT+ ;
-DEC: DIGIT+ ;
-CHAR: '\'' ~('\'') '\'' ;
-STR: ('"') ('\\' . | ~('\\'|'"'))* ('"') ;
-
-NEWLINE:'\r'? '\n' { SKIP(); };
-WSS: WS+ { SKIP(); };
-
-
-fragment TRUE: 'true';
-fragment FALSE: 'false';
-fragment ALPHA: ('a'..'z' | 'A'..'Z');
-fragment SPECIAL: ('_');
-fragment DIGIT: ('0'..'9');
-fragment BINARY_DIGIT: ('0' | '1');
-fragment HEX_DIGIT: ('0'..'9' | 'a'..'f' | 'A'..'F');
-fragment WS:(' '|'\t') ;
+WS  :   ( ' ' | '\t' | '\r' | '\n' )+ { $channel = HIDDEN; } ;    
+// END:tokens
