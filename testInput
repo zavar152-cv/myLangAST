@@ -1,3 +1,4 @@
 --a + c * -5 + !f + -k * 7 + (4 + 5);
-int l;
+int l = 5, s = 9, i;
+bool b;
 l = a;

@@ -67,14 +67,56 @@ digraph Tree {
     nodeIDENTIFIER_32 [label="IDENTIFIER"]
     nodeIDENTIFIER_32 -> nodel_33;
     nodel_33 [label="l"]
-    nodeSOURCE_0 -> nodeASSIGN_34;
-    nodeASSIGN_34 [label="="]
-    nodeASSIGN_34 -> nodeIDENTIFIER_35;
-    nodeIDENTIFIER_35 [label="IDENTIFIER"]
-    nodeIDENTIFIER_35 -> nodel_36;
-    nodel_36 [label="l"]
-    nodeASSIGN_34 -> nodeIDENTIFIER_37;
-    nodeIDENTIFIER_37 [label="IDENTIFIER"]
-    nodeIDENTIFIER_37 -> nodea_38;
-    nodea_38 [label="a"]
+    nodeVAR_29 -> nodeIDENTIFIER_34;
+    nodeIDENTIFIER_34 [label="IDENTIFIER"]
+    nodeIDENTIFIER_34 -> nodes_35;
+    nodes_35 [label="s"]
+    nodeVAR_29 -> nodeIDENTIFIER_36;
+    nodeIDENTIFIER_36 [label="IDENTIFIER"]
+    nodeIDENTIFIER_36 -> nodei_37;
+    nodei_37 [label="i"]
+    nodeVAR_29 -> nodeINIT_38;
+    nodeINIT_38 [label="INIT"]
+    nodeINIT_38 -> nodel_39;
+    nodel_39 [label="l"]
+    nodeINIT_38 -> nodeDEC_40;
+    nodeDEC_40 [label="DEC"]
+    nodeDEC_40 -> node5_41;
+    node5_41 [label="5"]
+    nodeVAR_29 -> nodeINIT_42;
+    nodeINIT_42 [label="INIT"]
+    nodeINIT_42 -> nodes_43;
+    nodes_43 [label="s"]
+    nodeINIT_42 -> nodeDEC_44;
+    nodeDEC_44 [label="DEC"]
+    nodeDEC_44 -> node9_45;
+    node9_45 [label="9"]
+    nodeVAR_29 -> nodeINIT_46;
+    nodeINIT_46 [label="INIT"]
+    nodeINIT_46 -> nodei_47;
+    nodei_47 [label="i"]
+    nodeSOURCE_0 -> nodeVAR_48;
+    nodeVAR_48 [label="VAR"]
+    nodeVAR_48 -> nodeTYPE_49;
+    nodeTYPE_49 [label="TYPE"]
+    nodeTYPE_49 -> nodebool_50;
+    nodebool_50 [label="bool"]
+    nodeVAR_48 -> nodeIDENTIFIER_51;
+    nodeIDENTIFIER_51 [label="IDENTIFIER"]
+    nodeIDENTIFIER_51 -> nodeb_52;
+    nodeb_52 [label="b"]
+    nodeVAR_48 -> nodeINIT_53;
+    nodeINIT_53 [label="INIT"]
+    nodeINIT_53 -> nodeb_54;
+    nodeb_54 [label="b"]
+    nodeSOURCE_0 -> nodeASSIGN_55;
+    nodeASSIGN_55 [label="="]
+    nodeASSIGN_55 -> nodeIDENTIFIER_56;
+    nodeIDENTIFIER_56 [label="IDENTIFIER"]
+    nodeIDENTIFIER_56 -> nodel_57;
+    nodel_57 [label="l"]
+    nodeASSIGN_55 -> nodeIDENTIFIER_58;
+    nodeIDENTIFIER_58 [label="IDENTIFIER"]
+    nodeIDENTIFIER_58 -> nodea_59;
+    nodea_59 [label="a"]
 }

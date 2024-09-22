@@ -35,6 +35,8 @@ tokens {
     VAR;
     SOURCE;
     TYPE;
+    LIST;
+    INIT;
 }
 
 source
@@ -47,14 +49,13 @@ sourceItem
     | expr ';' -> expr
     ;
 
-
 var
-    : typeRef identifier -> ^(VAR ^(TYPE typeRef) ^(IDENTIFIER identifier))
+    : typeRef ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(VAR ^(TYPE typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)*)
     ;
 
 
 typeRef
-    : baseType (arraySuffix)* 
+    : baseType
     ;
 
 baseType
@@ -76,10 +77,6 @@ builtinType
 customType
     : identifier
     -> ^(CUSTOM_TYPE identifier)
-    ;
-
-arraySuffix
-    : '[' (typeRef (',' typeRef)*)? ']' -> ^(ARRAY_TYPE typeRef (typeRef)*)
     ;
 
 expr
