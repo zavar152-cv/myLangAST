@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct DotNode* newDotNode(uint64_t id, const char* label, uint32_t childCount) {
-    struct DotNode* node = (struct DotNode*)malloc(sizeof(struct DotNode));
+DotNode* newDotNode(uint64_t id, const char* label, uint32_t childCount) {
+    DotNode* node = (DotNode*)malloc(sizeof(DotNode));
     node->id = id;
     node->label = strdup(label);
     node->childCount = childCount;
-    node->children = (struct DotNode**)malloc(childCount * sizeof(struct Node*));
+    node->children = (DotNode**)malloc(childCount * sizeof(DotNode*));
     return node;
 }
 
-void destroyDotNodeTree(struct DotNode* root) {
+void destroyDotNodeTree(DotNode* root) {
     if (root == NULL) {
         return;
     }
