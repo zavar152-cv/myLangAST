@@ -34,6 +34,7 @@ tokens {
     SOURCE_ITEM;
     VAR;
     SOURCE;
+    TYPE;
 }
 
 source
@@ -48,7 +49,7 @@ sourceItem
 
 
 var
-    : typeRef identifier -> ^(VAR typeRef identifier)
+    : typeRef identifier -> ^(VAR ^(TYPE typeRef) ^(IDENTIFIER identifier))
     ;
 
 
@@ -60,7 +61,7 @@ baseType
     : builtinType
     | customType
     ;
-
+//add rewrite-rule as customType
 builtinType
     : boolType
     | byteType
@@ -82,18 +83,30 @@ arraySuffix
     ;
 
 expr
-    : l=term (binOp^ r=term)*
+    : assignmentExpr
     ;
 
-term
-    : unary
-    | braces
+assignmentExpr
+    : addExpr (assign^ addExpr)?
+    ;
+
+addExpr
+    : mulExpr ((plus^ | minus^) mulExpr)*
+    ;
+
+mulExpr
+    : unaryExpr ((mul^) unaryExpr)*
+    ;
+
+unaryExpr
+    : unOp^ unaryExpr
+    | primary
+    ;
+
+primary
+    : braces
     | place
     | literal
-    ;
-
-unary
-    : unOp^ term
     ;
 
 braces

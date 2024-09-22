@@ -1,4 +1,2 @@
-k = 1;
-int a;
-char b;
---a + c * 5;
+--a + c * -5 + !f + -k;
+int l;

@@ -1,3 +1,4 @@
+#include <antlr3.h>
 #include <stdint.h>
 #include <stdio.h>
 
@@ -5,28 +6,6 @@
 #include "ExampleParser.h"
 #include "errorsUtils/error.h"
 #include "dotUtils/dotUtils.h"
-
-void getRecognitionError(pANTLR3_BASE_RECOGNIZER recognizer,
-                         pANTLR3_UINT8 *tokenNames) {
-  printf("%s\n", "Helpaaaaaaaaa");
-
-  pANTLR3_EXCEPTION exception = recognizer->state->exception;
-
-  pANTLR3_UINT8 errMsg = (pANTLR3_UINT8)exception->message;
-  ANTLR3_UINT32 errLine = exception->line;
-  ANTLR3_INT32 errPosInLine = exception->charPositionInLine;
-  pANTLR3_COMMON_TOKEN errToken = (pANTLR3_COMMON_TOKEN)(exception->token);
-  pANTLR3_STRING errTokenText = errToken->toString(errToken);
-
-  ErrorContext *context = (ErrorContext *)(recognizer->state->userp);
-
-  addError(context, (const char *)errMsg, (unsigned int)errLine,
-           (int)errPosInLine, (const char *)errTokenText->chars);
-}
-
-void reportLexerError(pANTLR3_BASE_RECOGNIZER recognizer) {
-  // IGNORE
-}
 
 struct DotNode* preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer, uint64_t *id) {
   if (root == NULL) {
@@ -104,11 +83,10 @@ int main(int argc, char *argv[]) {
   initErrorContext(&errorContext);
 
   parser->pParser->rec->state->userp = &errorContext;
-  parser->pParser->rec->displayRecognitionError = getRecognitionError;
+  parser->pParser->rec->displayRecognitionError = extractRecognitionError;
 
   ExampleParser_source_return r = parser->source(parser);
   ANTLR3_UINT32 errCount = parser->pParser->rec->state->errorCount;
-
 
   struct DotNode* dotTree;
   if (errCount > 0) {

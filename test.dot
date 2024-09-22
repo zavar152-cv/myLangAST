@@ -1,46 +1,52 @@
 digraph Tree {
     node [shape=hexagon];
     nodeSOURCE_0 [label="SOURCE"]
-    nodeSOURCE_0 -> nodeASSIGN_1;
-    nodeASSIGN_1 [label="ASSIGN"]
-    nodeASSIGN_1 -> nodeIDENTIFIER_2;
-    nodeIDENTIFIER_2 [label="IDENTIFIER"]
-    nodeIDENTIFIER_2 -> nodek_3;
-    nodek_3 [label="k"]
-    nodeASSIGN_1 -> nodeDEC_4;
-    nodeDEC_4 [label="DEC"]
-    nodeDEC_4 -> node1_5;
-    node1_5 [label="1"]
-    nodeSOURCE_0 -> nodeVAR_6;
-    nodeVAR_6 [label="VAR"]
-    nodeVAR_6 -> nodeint_7;
-    nodeint_7 [label="int"]
-    nodeVAR_6 -> nodea_8;
-    nodea_8 [label="a"]
-    nodeSOURCE_0 -> nodeVAR_9;
-    nodeVAR_9 [label="VAR"]
-    nodeVAR_9 -> nodechar_10;
-    nodechar_10 [label="char"]
-    nodeVAR_9 -> nodeb_11;
-    nodeb_11 [label="b"]
-    nodeSOURCE_0 -> nodeMUL_12;
-    nodeMUL_12 [label="MUL"]
-    nodeMUL_12 -> nodePLUS_13;
-    nodePLUS_13 [label="PLUS"]
-    nodePLUS_13 -> nodeNEG_14;
-    nodeNEG_14 [label="NEG"]
-    nodeNEG_14 -> nodeNEG_15;
-    nodeNEG_15 [label="NEG"]
-    nodeNEG_15 -> nodeIDENTIFIER_16;
-    nodeIDENTIFIER_16 [label="IDENTIFIER"]
-    nodeIDENTIFIER_16 -> nodea_17;
-    nodea_17 [label="a"]
-    nodePLUS_13 -> nodeIDENTIFIER_18;
+    nodeSOURCE_0 -> nodePLUS_1;
+    nodePLUS_1 [label="+"]
+    nodePLUS_1 -> nodePLUS_2;
+    nodePLUS_2 [label="+"]
+    nodePLUS_2 -> nodePLUS_3;
+    nodePLUS_3 [label="+"]
+    nodePLUS_3 -> nodeNEG_4;
+    nodeNEG_4 [label="NEG"]
+    nodeNEG_4 -> nodeNEG_5;
+    nodeNEG_5 [label="NEG"]
+    nodeNEG_5 -> nodeIDENTIFIER_6;
+    nodeIDENTIFIER_6 [label="IDENTIFIER"]
+    nodeIDENTIFIER_6 -> nodea_7;
+    nodea_7 [label="a"]
+    nodePLUS_3 -> nodeMUL_8;
+    nodeMUL_8 [label="*"]
+    nodeMUL_8 -> nodeIDENTIFIER_9;
+    nodeIDENTIFIER_9 [label="IDENTIFIER"]
+    nodeIDENTIFIER_9 -> nodec_10;
+    nodec_10 [label="c"]
+    nodeMUL_8 -> nodeNEG_11;
+    nodeNEG_11 [label="NEG"]
+    nodeNEG_11 -> nodeDEC_12;
+    nodeDEC_12 [label="DEC"]
+    nodeDEC_12 -> node5_13;
+    node5_13 [label="5"]
+    nodePLUS_2 -> nodeNOT_14;
+    nodeNOT_14 [label="NOT"]
+    nodeNOT_14 -> nodeIDENTIFIER_15;
+    nodeIDENTIFIER_15 [label="IDENTIFIER"]
+    nodeIDENTIFIER_15 -> nodef_16;
+    nodef_16 [label="f"]
+    nodePLUS_1 -> nodeNEG_17;
+    nodeNEG_17 [label="NEG"]
+    nodeNEG_17 -> nodeIDENTIFIER_18;
     nodeIDENTIFIER_18 [label="IDENTIFIER"]
-    nodeIDENTIFIER_18 -> nodec_19;
-    nodec_19 [label="c"]
-    nodeMUL_12 -> nodeDEC_20;
-    nodeDEC_20 [label="DEC"]
-    nodeDEC_20 -> node5_21;
-    node5_21 [label="5"]
+    nodeIDENTIFIER_18 -> nodek_19;
+    nodek_19 [label="k"]
+    nodeSOURCE_0 -> nodeVAR_20;
+    nodeVAR_20 [label="VAR"]
+    nodeVAR_20 -> nodeTYPE_21;
+    nodeTYPE_21 [label="TYPE"]
+    nodeTYPE_21 -> nodeint_22;
+    nodeint_22 [label="int"]
+    nodeVAR_20 -> nodeIDENTIFIER_23;
+    nodeIDENTIFIER_23 [label="IDENTIFIER"]
+    nodeIDENTIFIER_23 -> nodel_24;
+    nodel_24 [label="l"]
 }
