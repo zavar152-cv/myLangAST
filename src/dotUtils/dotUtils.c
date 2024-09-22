@@ -23,6 +23,34 @@ void destroyDotNodeTree(DotNode* root) {
     free(root);
 }
 
+const char* postProcessingNodeToken(const char* tokenText) {
+    if(strcmp(tokenText, "=") == 0) {
+        return "ASSIGN";
+    } else if(strcmp(tokenText, "+") == 0) {
+        return "PLUS";
+    } else if(strcmp(tokenText, "-") == 0) {
+        return "MINUS";
+    } else if(strcmp(tokenText, "*") == 0) {
+        return "MUL";
+    } else if(strcmp(tokenText, "/") == 0) {
+        return "DIV";
+    } else if(strcmp(tokenText, "==") == 0) {
+        return "EQ";
+    } else if(strcmp(tokenText, "!=") == 0) {
+        return "NEQ";
+    } else if(strcmp(tokenText, "<") == 0) {
+        return "LE";
+    } else if(strcmp(tokenText, ">") == 0) {
+        return "GR";
+    } else if(strcmp(tokenText, "<=") == 0) {
+        return "LE_EQ";
+    } else if(strcmp(tokenText, ">=") == 0) {
+        return "GR_EQ";
+    } else {
+        return tokenText;
+    }
+}
+
 DotNode* preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer, uint64_t *id, bool debug) {
   if (root == NULL) {
     return NULL;
@@ -35,7 +63,8 @@ DotNode* preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer, uint6
   }
 
   if(debug) {
-    printf("node %s_%lu [label=\"%s\"]", root->getToken(root)->getText(root->getToken(root))->chars, currentId,
+    const char* nodeName = postProcessingNodeToken((const char*)root->getToken(root)->getText(root->getToken(root))->chars);
+    printf("node %s_%lu [label=\"%s\"]", nodeName, currentId,
           root->getToken(root)->getText(root->getToken(root))->chars);
     printf("\n");
   }
@@ -57,13 +86,13 @@ void writeTreeToDot(FILE *file, DotNode* root) {
     return;
   }
 
-  fprintf(file, "    node%s_%lu [label=\"%s\"]\n", root->label, root->id, root->label);
+  fprintf(file, "    node%s_%lu [label=\"%s\"]\n", postProcessingNodeToken(root->label), root->id, root->label);
 
   for (uint32_t i = 0; i < root->childCount; i++) {
     DotNode* child = root->children[i];
     fprintf(file, "    node%s_%lu -> node%s_%lu;\n",
-            root->label, root->id,
-            child->label, child->id);
+            postProcessingNodeToken(root->label), root->id,
+            postProcessingNodeToken(child->label), child->id);
     writeTreeToDot(file, child);
   }
 }

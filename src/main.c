@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
   ExampleParser_source_return r = parser->source(parser);
   ANTLR3_UINT32 errCount = parser->pParser->rec->state->errorCount;
 
-  DotNode* dotTree;
+  DotNode* dotTree = NULL;
   if (errCount > 0) {
     printErrors(&errorContext);
   } else {

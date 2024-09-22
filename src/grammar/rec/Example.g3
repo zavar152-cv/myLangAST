@@ -95,7 +95,7 @@ addExpr
     ;
 
 mulExpr
-    : unaryExpr ((mul^) unaryExpr)*
+    : unaryExpr ((mul^ | divide^) unaryExpr)*
     ;
 
 unaryExpr
@@ -127,12 +127,19 @@ literal
     ;
 
 binOp
-    : assign -> ASSIGN
-    | plus -> PLUS
-    | minus -> MINUS
-    | mul -> MUL
+    : assign
+    | plus
+    | minus
+    | mul
+    | divide
+    | eq
+    | neq
+    | le
+    | gr
+    | leEq
+    | grEq
     ;
-//| '/' | '==' | '!=' | '<' | '>' | '<=' | '>=' 
+
 unOp
     : minus -> NEG
     | exclMark -> NOT
@@ -151,6 +158,13 @@ exclMark: EXCL_MARK_TOKEN;
 plus: PLUS_TOKEN;
 mul: MUL_TOKEN;
 assign: ASSIGN_TOKEN;
+divide: DIV_TOKEN;
+eq: EQ_TOKEN;
+neq: NEQ_TOKEN;
+le: LE_TOKEN;
+gr: GR_TOKEN;
+leEq: LE_EQ_TOKEN;
+grEq: GR_EQ_TOKEN;
 
 boolType: BOOL_TYPE;
 byteType: BYTE_TYPE;
@@ -166,6 +180,13 @@ EXCL_MARK_TOKEN: '!';
 PLUS_TOKEN: '+';
 MUL_TOKEN: '*';
 ASSIGN_TOKEN: '=';
+DIV_TOKEN: '/';
+EQ_TOKEN: '==';
+NEQ_TOKEN: '!=';
+LE_TOKEN: '<';
+GR_TOKEN: '>';
+LE_EQ_TOKEN: '<=';
+GR_EQ_TOKEN: '>=';
 
 BOOL_TYPE: 'bool';
 BYTE_TYPE: 'byte';
