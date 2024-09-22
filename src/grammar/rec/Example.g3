@@ -118,7 +118,7 @@ place
     ;
 
 literal
-    : bool -> ^(BOOL bool)
+    : boolLit -> ^(BOOL boolLit)
     | str -> ^(STR str)
     | rune -> ^(RUNE rune)
     | hex -> ^(HEX hex)
@@ -145,7 +145,7 @@ rune: CHAR_TOKEN;
 hex: HEX_TOKEN;
 bits: BITS_TOKEN;
 dec: DEC_TOKEN;
-bool: BOOL_TOKEN;
+boolLit: BOOL_TOKEN;
 minus: MINUS_TOKEN;
 exclMark: EXCL_MARK_TOKEN;
 plus: PLUS_TOKEN;

@@ -1,13 +1,13 @@
 digraph Tree {
     node [shape=hexagon];
     nodeSOURCE_0 [label="SOURCE"]
-    nodeSOURCE_0 -> nodePLUS_1;
-    nodePLUS_1 [label="+"]
-    nodePLUS_1 -> nodePLUS_2;
-    nodePLUS_2 [label="+"]
-    nodePLUS_2 -> nodePLUS_3;
-    nodePLUS_3 [label="+"]
-    nodePLUS_3 -> nodeNEG_4;
+    nodeSOURCE_0 -> node+_1;
+    node+_1 [label="+"]
+    node+_1 -> node+_2;
+    node+_2 [label="+"]
+    node+_2 -> node+_3;
+    node+_3 [label="+"]
+    node+_3 -> nodeNEG_4;
     nodeNEG_4 [label="NEG"]
     nodeNEG_4 -> nodeNEG_5;
     nodeNEG_5 [label="NEG"]
@@ -15,25 +15,25 @@ digraph Tree {
     nodeIDENTIFIER_6 [label="IDENTIFIER"]
     nodeIDENTIFIER_6 -> nodea_7;
     nodea_7 [label="a"]
-    nodePLUS_3 -> nodeMUL_8;
-    nodeMUL_8 [label="*"]
-    nodeMUL_8 -> nodeIDENTIFIER_9;
+    node+_3 -> node*_8;
+    node*_8 [label="*"]
+    node*_8 -> nodeIDENTIFIER_9;
     nodeIDENTIFIER_9 [label="IDENTIFIER"]
     nodeIDENTIFIER_9 -> nodec_10;
     nodec_10 [label="c"]
-    nodeMUL_8 -> nodeNEG_11;
+    node*_8 -> nodeNEG_11;
     nodeNEG_11 [label="NEG"]
     nodeNEG_11 -> nodeDEC_12;
     nodeDEC_12 [label="DEC"]
     nodeDEC_12 -> node5_13;
     node5_13 [label="5"]
-    nodePLUS_2 -> nodeNOT_14;
+    node+_2 -> nodeNOT_14;
     nodeNOT_14 [label="NOT"]
     nodeNOT_14 -> nodeIDENTIFIER_15;
     nodeIDENTIFIER_15 [label="IDENTIFIER"]
     nodeIDENTIFIER_15 -> nodef_16;
     nodef_16 [label="f"]
-    nodePLUS_1 -> nodeNEG_17;
+    node+_1 -> nodeNEG_17;
     nodeNEG_17 [label="NEG"]
     nodeNEG_17 -> nodeIDENTIFIER_18;
     nodeIDENTIFIER_18 [label="IDENTIFIER"]
