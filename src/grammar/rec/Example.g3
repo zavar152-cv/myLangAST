@@ -30,13 +30,14 @@ tokens {
     IDENTIFIER;
     BUILTIN_TYPE;
     CUSTOM_TYPE;
-    ARRAY_TYPE;
+    ARRAY;
     SOURCE_ITEM;
     VAR;
     SOURCE;
     TYPE;
     LIST;
     INIT;
+    ARRAY_SIZE;
 }
 
 source
@@ -47,12 +48,17 @@ source
 sourceItem
     : var ';' -> var
     | expr ';' -> expr
+    | array ';' -> array
     ;
 
 var
     : typeRef ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(VAR ^(TYPE typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)*)
     ;
 
+//WTF is size?
+array
+    : typeRef '[' size+=(',')* ']' ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(ARRAY ^(TYPE typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)* ^(ARRAY_SIZE $size*)?)
+    ;
 
 typeRef
     : baseType
@@ -200,7 +206,7 @@ BITS_TOKEN: '0' ('b'|'B') BINARY_DIGIT+ ;
 HEX_TOKEN: '0'('x'|'X') HEX_DIGIT+ ;
 DEC_TOKEN: DIGIT+ ;
 CHAR_TOKEN: '\'' ~('\'') '\'' ;
-STR_TOKEN: ('"') ('\\' . | ~('\\'|'"'))* ('"') ;
+STR_TOKEN: ('"') ('\\' . | ~('\\'|'"'))* ('"');
 
 NEWLINE:'\r'? '\n' { SKIP(); };
 WSS: WS+ { SKIP(); };

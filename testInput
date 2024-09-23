@@ -1,4 +1,6 @@
 --a + c * -5 + !f + -k * 7 + (4 + 5);
 int l = 5, s = 9, i;
-bool b;
+Mybool b;
+int[,,,] arr;
+string st = "lol";
 l = a;

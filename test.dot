@@ -99,24 +99,66 @@ digraph Tree {
     nodeVAR_48 [label="VAR"]
     nodeVAR_48 -> nodeTYPE_49;
     nodeTYPE_49 [label="TYPE"]
-    nodeTYPE_49 -> nodebool_50;
-    nodebool_50 [label="bool"]
-    nodeVAR_48 -> nodeIDENTIFIER_51;
-    nodeIDENTIFIER_51 [label="IDENTIFIER"]
-    nodeIDENTIFIER_51 -> nodeb_52;
-    nodeb_52 [label="b"]
-    nodeVAR_48 -> nodeINIT_53;
-    nodeINIT_53 [label="INIT"]
-    nodeINIT_53 -> nodeb_54;
-    nodeb_54 [label="b"]
-    nodeSOURCE_0 -> nodeASSIGN_55;
-    nodeASSIGN_55 [label="="]
-    nodeASSIGN_55 -> nodeIDENTIFIER_56;
-    nodeIDENTIFIER_56 [label="IDENTIFIER"]
-    nodeIDENTIFIER_56 -> nodel_57;
-    nodel_57 [label="l"]
-    nodeASSIGN_55 -> nodeIDENTIFIER_58;
-    nodeIDENTIFIER_58 [label="IDENTIFIER"]
-    nodeIDENTIFIER_58 -> nodea_59;
-    nodea_59 [label="a"]
+    nodeTYPE_49 -> nodeCUSTOM_TYPE_50;
+    nodeCUSTOM_TYPE_50 [label="CUSTOM_TYPE"]
+    nodeCUSTOM_TYPE_50 -> nodeMybool_51;
+    nodeMybool_51 [label="Mybool"]
+    nodeVAR_48 -> nodeIDENTIFIER_52;
+    nodeIDENTIFIER_52 [label="IDENTIFIER"]
+    nodeIDENTIFIER_52 -> nodeb_53;
+    nodeb_53 [label="b"]
+    nodeVAR_48 -> nodeINIT_54;
+    nodeINIT_54 [label="INIT"]
+    nodeINIT_54 -> nodeb_55;
+    nodeb_55 [label="b"]
+    nodeSOURCE_0 -> nodeARRAY_56;
+    nodeARRAY_56 [label="ARRAY"]
+    nodeARRAY_56 -> nodeTYPE_57;
+    nodeTYPE_57 [label="TYPE"]
+    nodeTYPE_57 -> nodeint_58;
+    nodeint_58 [label="int"]
+    nodeARRAY_56 -> nodeIDENTIFIER_59;
+    nodeIDENTIFIER_59 [label="IDENTIFIER"]
+    nodeIDENTIFIER_59 -> nodearr_60;
+    nodearr_60 [label="arr"]
+    nodeARRAY_56 -> nodeINIT_61;
+    nodeINIT_61 [label="INIT"]
+    nodeINIT_61 -> nodearr_62;
+    nodearr_62 [label="arr"]
+    nodeARRAY_56 -> nodeARRAY_SIZE_63;
+    nodeARRAY_SIZE_63 [label="ARRAY_SIZE"]
+    nodeARRAY_SIZE_63 -> nodeCOMMA_64;
+    nodeCOMMA_64 [label=","]
+    nodeARRAY_SIZE_63 -> nodeCOMMA_65;
+    nodeCOMMA_65 [label=","]
+    nodeARRAY_SIZE_63 -> nodeCOMMA_66;
+    nodeCOMMA_66 [label=","]
+    nodeSOURCE_0 -> nodeVAR_67;
+    nodeVAR_67 [label="VAR"]
+    nodeVAR_67 -> nodeTYPE_68;
+    nodeTYPE_68 [label="TYPE"]
+    nodeTYPE_68 -> nodestring_69;
+    nodestring_69 [label="string"]
+    nodeVAR_67 -> nodeIDENTIFIER_70;
+    nodeIDENTIFIER_70 [label="IDENTIFIER"]
+    nodeIDENTIFIER_70 -> nodest_71;
+    nodest_71 [label="st"]
+    nodeVAR_67 -> nodeINIT_72;
+    nodeINIT_72 [label="INIT"]
+    nodeINIT_72 -> nodest_73;
+    nodest_73 [label="st"]
+    nodeINIT_72 -> nodeSTR_74;
+    nodeSTR_74 [label="STR"]
+    nodeSTR_74 -> nodelol_75;
+    nodelol_75 [label="lol"]
+    nodeSOURCE_0 -> nodeASSIGN_76;
+    nodeASSIGN_76 [label="="]
+    nodeASSIGN_76 -> nodeIDENTIFIER_77;
+    nodeIDENTIFIER_77 [label="IDENTIFIER"]
+    nodeIDENTIFIER_77 -> nodel_78;
+    nodel_78 [label="l"]
+    nodeASSIGN_76 -> nodeIDENTIFIER_79;
+    nodeIDENTIFIER_79 [label="IDENTIFIER"]
+    nodeIDENTIFIER_79 -> nodea_80;
+    nodea_80 [label="a"]
 }
