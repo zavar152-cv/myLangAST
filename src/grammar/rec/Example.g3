@@ -42,6 +42,15 @@ tokens {
     INDEXER;
     PRIMARY;
     TYPEREF;
+    BLOCK;
+    FUNC_SIGNATURE;
+    FUNC_DEF;
+    ARGDEF_LIST;
+    ARGDEF;
+    NAME;
+    BREAK;
+    FUNC_CALL;
+    EXPR_LIST;
 }
 
 source
@@ -50,12 +59,26 @@ source
     ;
 
 sourceItem
-    : statement
+    : funcSignature (statementBlock | ';') -> ^(FUNC_DEF funcSignature statementBlock?)
+    ;
+
+funcSignature
+    : typeRef? identifier '(' argDefList ')' -> ^(FUNC_SIGNATURE typeRef? ^(NAME identifier) argDefList)
+    ;
+
+argDefList
+    : (argDef (',' argDef)*)? -> ^(ARGDEF_LIST argDef*)
+    ;
+
+argDef
+    : typeRef? identifier -> ^(ARGDEF typeRef? ^(IDENTIFIER identifier))
     ;
 
 statement
     : var ';' -> var
-    | expr ';' -> ^(EXPR expr)
+    | statementBlock -> statementBlock
+    | 'break' ';' -> ^(BREAK)
+    | exprStatement -> exprStatement
     ;
 
 typeRef
@@ -91,6 +114,14 @@ customType
     : identifier -> ^(CUSTOM_TYPE identifier)
     ;
 
+statementBlock
+    : '{' statement* '}' -> ^(BLOCK statement*)
+    ;
+
+exprStatement
+    : expr ';' -> ^(EXPR expr)
+    ;
+
 expr
     : assignmentExpr
     ;
@@ -114,8 +145,17 @@ unaryExpr
 
 primary
     : braces
+    | funcCall
     | place
     | literal
+    ;
+
+funcCall
+    : identifier '(' exprList? ')' -> ^(FUNC_CALL ^(NAME identifier) exprList?)
+    ;
+
+exprList
+    : expr (',' expr)* -> ^(EXPR_LIST expr+)
     ;
 
 braces

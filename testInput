@@ -1,6 +1,22 @@
---a + c * -5 + !f + -k * 7 + (4 + 5);
-int l = 5, s = 9, i;
-Mybool b;
-int[,,,] arr;
-string st = "lol";
-l = a;
+int main(string[] args) {
+    k = --a + c * -5 + !f + -k * 7 + (4 + 5);
+    int l = 5, s = 9, i;
+    Mybool b;
+    int[,,,] arr;
+    string st = "lol";
+    l = a;
+    ret = buzz(k, a);
+}
+
+myInt[] buzz() {
+    fuzz();
+    string test = "wasd";
+    var = --1 + c * -5 + !f;
+    var2 = --2 + c1 * -5 + !f;
+}
+
+int fuzz(bool b, int k, myType mt) {
+    string test = "wasd";
+    var = --1 + c * -5 + !f;
+    var2 = --2 + c1 * -5 + !f;
+}
