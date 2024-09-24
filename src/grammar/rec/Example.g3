@@ -38,37 +38,44 @@ tokens {
     LIST;
     INIT;
     ARRAY_SIZE;
+    CALL;
+    INDEXER;
+    PRIMARY;
+    TYPEREF;
 }
 
 source
     :
-    sourceItem+ -> ^(SOURCE sourceItem+)
+    sourceItem* -> ^(SOURCE sourceItem*)
     ;
 
 sourceItem
+    : statement
+    ;
+
+statement
     : var ';' -> var
-    | expr ';' -> expr
-    | array ';' -> array
+    | expr ';' -> ^(EXPR expr)
+    ;
+
+typeRef
+    : baseType array* -> ^(TYPEREF baseType array*)
     ;
 
 var
-    : typeRef ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(VAR ^(TYPE typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)*)
+    : typeRef ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(VAR ^(typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)*)
     ;
 
 //WTF is size?
 array
-    : typeRef '[' size+=(',')* ']' ((identifier ('=' expr)?) (',' (identifier ('=' expr)?))*) -> ^(ARRAY ^(TYPE typeRef) ^(IDENTIFIER identifier)* ^(INIT identifier expr)* ^(ARRAY_SIZE $size*)?)
-    ;
-
-typeRef
-    : baseType
+    : '[' size+=(',')* ']' -> ^(ARRAY ^(ARRAY_SIZE $size*)?)
     ;
 
 baseType
-    : builtinType
+    : builtinType -> ^(BUILTIN_TYPE builtinType)
     | customType
     ;
-//add rewrite-rule as customType
+
 builtinType
     : boolType
     | byteType
@@ -81,8 +88,7 @@ builtinType
     ;
 
 customType
-    : identifier
-    -> ^(CUSTOM_TYPE identifier)
+    : identifier -> ^(CUSTOM_TYPE identifier)
     ;
 
 expr

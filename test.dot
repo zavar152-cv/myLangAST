@@ -1,131 +1,131 @@
 digraph Tree {
     node [shape=hexagon];
     nodeSOURCE_0 [label="SOURCE"]
-    nodeSOURCE_0 -> nodePLUS_1;
-    nodePLUS_1 [label="+"]
-    nodePLUS_1 -> nodePLUS_2;
+    nodeSOURCE_0 -> nodeEXPR_1;
+    nodeEXPR_1 [label="EXPR"]
+    nodeEXPR_1 -> nodePLUS_2;
     nodePLUS_2 [label="+"]
     nodePLUS_2 -> nodePLUS_3;
     nodePLUS_3 [label="+"]
     nodePLUS_3 -> nodePLUS_4;
     nodePLUS_4 [label="+"]
-    nodePLUS_4 -> nodeNEG_5;
-    nodeNEG_5 [label="NEG"]
-    nodeNEG_5 -> nodeNEG_6;
+    nodePLUS_4 -> nodePLUS_5;
+    nodePLUS_5 [label="+"]
+    nodePLUS_5 -> nodeNEG_6;
     nodeNEG_6 [label="NEG"]
-    nodeNEG_6 -> nodeIDENTIFIER_7;
-    nodeIDENTIFIER_7 [label="IDENTIFIER"]
-    nodeIDENTIFIER_7 -> nodea_8;
-    nodea_8 [label="a"]
-    nodePLUS_4 -> nodeMUL_9;
-    nodeMUL_9 [label="*"]
-    nodeMUL_9 -> nodeIDENTIFIER_10;
-    nodeIDENTIFIER_10 [label="IDENTIFIER"]
-    nodeIDENTIFIER_10 -> nodec_11;
-    nodec_11 [label="c"]
-    nodeMUL_9 -> nodeNEG_12;
-    nodeNEG_12 [label="NEG"]
-    nodeNEG_12 -> nodeDEC_13;
-    nodeDEC_13 [label="DEC"]
-    nodeDEC_13 -> node5_14;
-    node5_14 [label="5"]
-    nodePLUS_3 -> nodeNOT_15;
-    nodeNOT_15 [label="NOT"]
-    nodeNOT_15 -> nodeIDENTIFIER_16;
-    nodeIDENTIFIER_16 [label="IDENTIFIER"]
-    nodeIDENTIFIER_16 -> nodef_17;
-    nodef_17 [label="f"]
-    nodePLUS_2 -> nodeMUL_18;
-    nodeMUL_18 [label="*"]
-    nodeMUL_18 -> nodeNEG_19;
-    nodeNEG_19 [label="NEG"]
-    nodeNEG_19 -> nodeIDENTIFIER_20;
-    nodeIDENTIFIER_20 [label="IDENTIFIER"]
-    nodeIDENTIFIER_20 -> nodek_21;
-    nodek_21 [label="k"]
-    nodeMUL_18 -> nodeDEC_22;
-    nodeDEC_22 [label="DEC"]
-    nodeDEC_22 -> node7_23;
-    node7_23 [label="7"]
-    nodePLUS_1 -> nodePLUS_24;
-    nodePLUS_24 [label="+"]
-    nodePLUS_24 -> nodeDEC_25;
-    nodeDEC_25 [label="DEC"]
-    nodeDEC_25 -> node4_26;
-    node4_26 [label="4"]
-    nodePLUS_24 -> nodeDEC_27;
-    nodeDEC_27 [label="DEC"]
-    nodeDEC_27 -> node5_28;
-    node5_28 [label="5"]
-    nodeSOURCE_0 -> nodeVAR_29;
-    nodeVAR_29 [label="VAR"]
-    nodeVAR_29 -> nodeTYPE_30;
-    nodeTYPE_30 [label="TYPE"]
-    nodeTYPE_30 -> nodeint_31;
-    nodeint_31 [label="int"]
-    nodeVAR_29 -> nodeIDENTIFIER_32;
-    nodeIDENTIFIER_32 [label="IDENTIFIER"]
-    nodeIDENTIFIER_32 -> nodel_33;
-    nodel_33 [label="l"]
-    nodeVAR_29 -> nodeIDENTIFIER_34;
+    nodeNEG_6 -> nodeNEG_7;
+    nodeNEG_7 [label="NEG"]
+    nodeNEG_7 -> nodeIDENTIFIER_8;
+    nodeIDENTIFIER_8 [label="IDENTIFIER"]
+    nodeIDENTIFIER_8 -> nodea_9;
+    nodea_9 [label="a"]
+    nodePLUS_5 -> nodeMUL_10;
+    nodeMUL_10 [label="*"]
+    nodeMUL_10 -> nodeIDENTIFIER_11;
+    nodeIDENTIFIER_11 [label="IDENTIFIER"]
+    nodeIDENTIFIER_11 -> nodec_12;
+    nodec_12 [label="c"]
+    nodeMUL_10 -> nodeNEG_13;
+    nodeNEG_13 [label="NEG"]
+    nodeNEG_13 -> nodeDEC_14;
+    nodeDEC_14 [label="DEC"]
+    nodeDEC_14 -> node5_15;
+    node5_15 [label="5"]
+    nodePLUS_4 -> nodeNOT_16;
+    nodeNOT_16 [label="NOT"]
+    nodeNOT_16 -> nodeIDENTIFIER_17;
+    nodeIDENTIFIER_17 [label="IDENTIFIER"]
+    nodeIDENTIFIER_17 -> nodef_18;
+    nodef_18 [label="f"]
+    nodePLUS_3 -> nodeMUL_19;
+    nodeMUL_19 [label="*"]
+    nodeMUL_19 -> nodeNEG_20;
+    nodeNEG_20 [label="NEG"]
+    nodeNEG_20 -> nodeIDENTIFIER_21;
+    nodeIDENTIFIER_21 [label="IDENTIFIER"]
+    nodeIDENTIFIER_21 -> nodek_22;
+    nodek_22 [label="k"]
+    nodeMUL_19 -> nodeDEC_23;
+    nodeDEC_23 [label="DEC"]
+    nodeDEC_23 -> node7_24;
+    node7_24 [label="7"]
+    nodePLUS_2 -> nodePLUS_25;
+    nodePLUS_25 [label="+"]
+    nodePLUS_25 -> nodeDEC_26;
+    nodeDEC_26 [label="DEC"]
+    nodeDEC_26 -> node4_27;
+    node4_27 [label="4"]
+    nodePLUS_25 -> nodeDEC_28;
+    nodeDEC_28 [label="DEC"]
+    nodeDEC_28 -> node5_29;
+    node5_29 [label="5"]
+    nodeSOURCE_0 -> nodeVAR_30;
+    nodeVAR_30 [label="VAR"]
+    nodeVAR_30 -> nodeTYPEREF_31;
+    nodeTYPEREF_31 [label="TYPEREF"]
+    nodeTYPEREF_31 -> nodeBUILTIN_TYPE_32;
+    nodeBUILTIN_TYPE_32 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_32 -> nodeint_33;
+    nodeint_33 [label="int"]
+    nodeVAR_30 -> nodeIDENTIFIER_34;
     nodeIDENTIFIER_34 [label="IDENTIFIER"]
-    nodeIDENTIFIER_34 -> nodes_35;
-    nodes_35 [label="s"]
-    nodeVAR_29 -> nodeIDENTIFIER_36;
+    nodeIDENTIFIER_34 -> nodel_35;
+    nodel_35 [label="l"]
+    nodeVAR_30 -> nodeIDENTIFIER_36;
     nodeIDENTIFIER_36 [label="IDENTIFIER"]
-    nodeIDENTIFIER_36 -> nodei_37;
-    nodei_37 [label="i"]
-    nodeVAR_29 -> nodeINIT_38;
-    nodeINIT_38 [label="INIT"]
-    nodeINIT_38 -> nodel_39;
-    nodel_39 [label="l"]
-    nodeINIT_38 -> nodeDEC_40;
-    nodeDEC_40 [label="DEC"]
-    nodeDEC_40 -> node5_41;
-    node5_41 [label="5"]
-    nodeVAR_29 -> nodeINIT_42;
-    nodeINIT_42 [label="INIT"]
-    nodeINIT_42 -> nodes_43;
-    nodes_43 [label="s"]
-    nodeINIT_42 -> nodeDEC_44;
-    nodeDEC_44 [label="DEC"]
-    nodeDEC_44 -> node9_45;
-    node9_45 [label="9"]
-    nodeVAR_29 -> nodeINIT_46;
-    nodeINIT_46 [label="INIT"]
-    nodeINIT_46 -> nodei_47;
-    nodei_47 [label="i"]
-    nodeSOURCE_0 -> nodeVAR_48;
-    nodeVAR_48 [label="VAR"]
-    nodeVAR_48 -> nodeTYPE_49;
-    nodeTYPE_49 [label="TYPE"]
-    nodeTYPE_49 -> nodeCUSTOM_TYPE_50;
-    nodeCUSTOM_TYPE_50 [label="CUSTOM_TYPE"]
-    nodeCUSTOM_TYPE_50 -> nodeMybool_51;
-    nodeMybool_51 [label="Mybool"]
-    nodeVAR_48 -> nodeIDENTIFIER_52;
-    nodeIDENTIFIER_52 [label="IDENTIFIER"]
-    nodeIDENTIFIER_52 -> nodeb_53;
-    nodeb_53 [label="b"]
-    nodeVAR_48 -> nodeINIT_54;
-    nodeINIT_54 [label="INIT"]
-    nodeINIT_54 -> nodeb_55;
+    nodeIDENTIFIER_36 -> nodes_37;
+    nodes_37 [label="s"]
+    nodeVAR_30 -> nodeIDENTIFIER_38;
+    nodeIDENTIFIER_38 [label="IDENTIFIER"]
+    nodeIDENTIFIER_38 -> nodei_39;
+    nodei_39 [label="i"]
+    nodeVAR_30 -> nodeINIT_40;
+    nodeINIT_40 [label="INIT"]
+    nodeINIT_40 -> nodel_41;
+    nodel_41 [label="l"]
+    nodeINIT_40 -> nodeDEC_42;
+    nodeDEC_42 [label="DEC"]
+    nodeDEC_42 -> node5_43;
+    node5_43 [label="5"]
+    nodeVAR_30 -> nodeINIT_44;
+    nodeINIT_44 [label="INIT"]
+    nodeINIT_44 -> nodes_45;
+    nodes_45 [label="s"]
+    nodeINIT_44 -> nodeDEC_46;
+    nodeDEC_46 [label="DEC"]
+    nodeDEC_46 -> node9_47;
+    node9_47 [label="9"]
+    nodeVAR_30 -> nodeINIT_48;
+    nodeINIT_48 [label="INIT"]
+    nodeINIT_48 -> nodei_49;
+    nodei_49 [label="i"]
+    nodeSOURCE_0 -> nodeVAR_50;
+    nodeVAR_50 [label="VAR"]
+    nodeVAR_50 -> nodeTYPEREF_51;
+    nodeTYPEREF_51 [label="TYPEREF"]
+    nodeTYPEREF_51 -> nodeCUSTOM_TYPE_52;
+    nodeCUSTOM_TYPE_52 [label="CUSTOM_TYPE"]
+    nodeCUSTOM_TYPE_52 -> nodeMybool_53;
+    nodeMybool_53 [label="Mybool"]
+    nodeVAR_50 -> nodeIDENTIFIER_54;
+    nodeIDENTIFIER_54 [label="IDENTIFIER"]
+    nodeIDENTIFIER_54 -> nodeb_55;
     nodeb_55 [label="b"]
-    nodeSOURCE_0 -> nodeARRAY_56;
-    nodeARRAY_56 [label="ARRAY"]
-    nodeARRAY_56 -> nodeTYPE_57;
-    nodeTYPE_57 [label="TYPE"]
-    nodeTYPE_57 -> nodeint_58;
-    nodeint_58 [label="int"]
-    nodeARRAY_56 -> nodeIDENTIFIER_59;
-    nodeIDENTIFIER_59 [label="IDENTIFIER"]
-    nodeIDENTIFIER_59 -> nodearr_60;
-    nodearr_60 [label="arr"]
-    nodeARRAY_56 -> nodeINIT_61;
-    nodeINIT_61 [label="INIT"]
-    nodeINIT_61 -> nodearr_62;
-    nodearr_62 [label="arr"]
-    nodeARRAY_56 -> nodeARRAY_SIZE_63;
+    nodeVAR_50 -> nodeINIT_56;
+    nodeINIT_56 [label="INIT"]
+    nodeINIT_56 -> nodeb_57;
+    nodeb_57 [label="b"]
+    nodeSOURCE_0 -> nodeVAR_58;
+    nodeVAR_58 [label="VAR"]
+    nodeVAR_58 -> nodeTYPEREF_59;
+    nodeTYPEREF_59 [label="TYPEREF"]
+    nodeTYPEREF_59 -> nodeBUILTIN_TYPE_60;
+    nodeBUILTIN_TYPE_60 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_60 -> nodeint_61;
+    nodeint_61 [label="int"]
+    nodeTYPEREF_59 -> nodeARRAY_62;
+    nodeARRAY_62 [label="ARRAY"]
+    nodeARRAY_62 -> nodeARRAY_SIZE_63;
     nodeARRAY_SIZE_63 [label="ARRAY_SIZE"]
     nodeARRAY_SIZE_63 -> nodeCOMMA_64;
     nodeCOMMA_64 [label=","]
@@ -133,32 +133,44 @@ digraph Tree {
     nodeCOMMA_65 [label=","]
     nodeARRAY_SIZE_63 -> nodeCOMMA_66;
     nodeCOMMA_66 [label=","]
-    nodeSOURCE_0 -> nodeVAR_67;
-    nodeVAR_67 [label="VAR"]
-    nodeVAR_67 -> nodeTYPE_68;
-    nodeTYPE_68 [label="TYPE"]
-    nodeTYPE_68 -> nodestring_69;
-    nodestring_69 [label="string"]
-    nodeVAR_67 -> nodeIDENTIFIER_70;
-    nodeIDENTIFIER_70 [label="IDENTIFIER"]
-    nodeIDENTIFIER_70 -> nodest_71;
-    nodest_71 [label="st"]
-    nodeVAR_67 -> nodeINIT_72;
-    nodeINIT_72 [label="INIT"]
-    nodeINIT_72 -> nodest_73;
-    nodest_73 [label="st"]
-    nodeINIT_72 -> nodeSTR_74;
-    nodeSTR_74 [label="STR"]
-    nodeSTR_74 -> nodelol_75;
-    nodelol_75 [label="lol"]
-    nodeSOURCE_0 -> nodeASSIGN_76;
-    nodeASSIGN_76 [label="="]
-    nodeASSIGN_76 -> nodeIDENTIFIER_77;
-    nodeIDENTIFIER_77 [label="IDENTIFIER"]
-    nodeIDENTIFIER_77 -> nodel_78;
-    nodel_78 [label="l"]
-    nodeASSIGN_76 -> nodeIDENTIFIER_79;
-    nodeIDENTIFIER_79 [label="IDENTIFIER"]
-    nodeIDENTIFIER_79 -> nodea_80;
-    nodea_80 [label="a"]
+    nodeVAR_58 -> nodeIDENTIFIER_67;
+    nodeIDENTIFIER_67 [label="IDENTIFIER"]
+    nodeIDENTIFIER_67 -> nodearr_68;
+    nodearr_68 [label="arr"]
+    nodeVAR_58 -> nodeINIT_69;
+    nodeINIT_69 [label="INIT"]
+    nodeINIT_69 -> nodearr_70;
+    nodearr_70 [label="arr"]
+    nodeSOURCE_0 -> nodeVAR_71;
+    nodeVAR_71 [label="VAR"]
+    nodeVAR_71 -> nodeTYPEREF_72;
+    nodeTYPEREF_72 [label="TYPEREF"]
+    nodeTYPEREF_72 -> nodeBUILTIN_TYPE_73;
+    nodeBUILTIN_TYPE_73 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_73 -> nodestring_74;
+    nodestring_74 [label="string"]
+    nodeVAR_71 -> nodeIDENTIFIER_75;
+    nodeIDENTIFIER_75 [label="IDENTIFIER"]
+    nodeIDENTIFIER_75 -> nodest_76;
+    nodest_76 [label="st"]
+    nodeVAR_71 -> nodeINIT_77;
+    nodeINIT_77 [label="INIT"]
+    nodeINIT_77 -> nodest_78;
+    nodest_78 [label="st"]
+    nodeINIT_77 -> nodeSTR_79;
+    nodeSTR_79 [label="STR"]
+    nodeSTR_79 -> nodelol_80;
+    nodelol_80 [label="lol"]
+    nodeSOURCE_0 -> nodeEXPR_81;
+    nodeEXPR_81 [label="EXPR"]
+    nodeEXPR_81 -> nodeASSIGN_82;
+    nodeASSIGN_82 [label="="]
+    nodeASSIGN_82 -> nodeIDENTIFIER_83;
+    nodeIDENTIFIER_83 [label="IDENTIFIER"]
+    nodeIDENTIFIER_83 -> nodel_84;
+    nodel_84 [label="l"]
+    nodeASSIGN_82 -> nodeIDENTIFIER_85;
+    nodeIDENTIFIER_85 [label="IDENTIFIER"]
+    nodeIDENTIFIER_85 -> nodea_86;
+    nodea_86 [label="a"]
 }
