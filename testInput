@@ -5,6 +5,10 @@ int main(string[] args) {
     int[,,,] arr;
     string st = "lol";
     l = a;
+    arr[1] = 9;
+    arr[0] = k;
+    arr[l] = fuzz(true, 0, "testString");
+    arr[s + i * -7] = 0;
     ret = buzz(k, a);
 }
 

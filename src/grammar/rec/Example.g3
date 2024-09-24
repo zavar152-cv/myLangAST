@@ -1,11 +1,10 @@
-// START:header
 grammar Example;
 
 options {
     language=C;
     output=AST;
     ASTLabelType = pANTLR3_BASE_TREE;
-} // build trees
+}
 
 tokens {
     EXPR;
@@ -51,6 +50,7 @@ tokens {
     BREAK;
     FUNC_CALL;
     EXPR_LIST;
+    INDEXING;
 }
 
 source
@@ -146,6 +146,7 @@ unaryExpr
 primary
     : braces
     | funcCall
+    | indexing
     | place
     | literal
     ;
@@ -156,6 +157,10 @@ funcCall
 
 exprList
     : expr (',' expr)* -> ^(EXPR_LIST expr+)
+    ;
+
+indexing
+    : identifier '[' exprList ']' -> ^(INDEXING identifier exprList)
     ;
 
 braces
