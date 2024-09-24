@@ -46,6 +46,8 @@ const char *postProcessingNodeToken(const char *tokenText) {
     return "MUL";
   } else if (strcmp(tokenText, "/") == 0) {
     return "DIV";
+  } else if (strcmp(tokenText, "%") == 0) {
+    return "MOD";
   } else if (strcmp(tokenText, "==") == 0) {
     return "EQ";
   } else if (strcmp(tokenText, "!=") == 0) {
@@ -111,14 +113,11 @@ void writeTreeToDot(FILE *file, DotNode *root) {
     return;
   }
 
-  fprintf(file, "    node%s_%lu [label=\"%s\"]\n",
-          postProcessingNodeToken(root->label), root->id, root->label);
+  fprintf(file, "    node_%lu [label=\"%s\"]\n", root->id, root->label);
 
   for (uint32_t i = 0; i < root->childCount; i++) {
     DotNode *child = root->children[i];
-    fprintf(file, "    node%s_%lu -> node%s_%lu;\n",
-            postProcessingNodeToken(root->label), root->id,
-            postProcessingNodeToken(child->label), child->id);
+    fprintf(file, "    node_%lu -> node_%lu;\n", root->id, child->id);
     writeTreeToDot(file, child);
   }
 }
