@@ -10,7 +10,7 @@ typedef struct ErrorNode {
   struct ErrorNode *next;
 } ErrorNode;
 
-typedef struct ErrorContext {
+typedef struct __attribute__((packed)) ErrorContext {
   unsigned int errorCount;
   ErrorNode *head;
 } ErrorContext;

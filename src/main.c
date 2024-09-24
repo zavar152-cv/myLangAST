@@ -3,40 +3,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "MyLangLexer.h"
-#include "MyLangParser.h"
-#include "errorsUtils/errorUtils.h"
+#include "grammar/myLang.h"
 #include "dotUtils/dotUtils.h"
+
 
 int main(int argc, char *argv[]) {
   pANTLR3_UINT8 filename = (pANTLR3_UINT8)argv[1];
   printf("%s\n", argv[1]);
 
-  pANTLR3_INPUT_STREAM input;
-  pMyLangLexer lex;
-  pANTLR3_COMMON_TOKEN_STREAM tokens;
-  pMyLangParser parser;
-
-  input = antlr3FileStreamNew(filename, ANTLR3_ENC_8BIT);
-  lex = MyLangLexerNew(input);
-  lex->pLexer->rec->reportError = reportLexerError;
-  tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT, TOKENSOURCE(lex));
-  parser = MyLangParserNew(tokens);
-
-  ErrorContext errorContext;
-  initErrorContext(&errorContext);
-
-  parser->pParser->rec->state->userp = &errorContext;
-  parser->pParser->rec->displayRecognitionError = extractRecognitionError;
-
-  MyLangParser_source_return r = parser->source(parser);
-  ANTLR3_UINT32 errCount = parser->pParser->rec->state->errorCount;
+  MyLangResult result;
+  pANTLR3_INPUT_STREAM input = antlr3FileStreamNew(filename, ANTLR3_ENC_8BIT);
+  createMyLangResult(&result, input);
 
   DotNode* dotTree = NULL;
-  if (errCount > 0) {
-    printErrors(&errorContext);
+  if (!result.isValid) {
+    printErrors(&result.errorContext);
   } else {
-    pANTLR3_BASE_TREE tree = r.tree;
+    pANTLR3_BASE_TREE tree = result.tree;
     printf("%s\n", tree->toStringTree(tree)->chars);
     printf("%u\n", tree->getChildCount(tree));
     uint64_t id = 0;
@@ -45,10 +28,8 @@ int main(int argc, char *argv[]) {
   }
 
   destroyDotNodeTree(dotTree);
-  destroyErrorContext(&errorContext);
-  parser->free(parser);
-  tokens->free(tokens);
-  lex->free(lex);
+  destroyMyLangResult(&result);
   input->close(input);
+
   return 0;
 }
