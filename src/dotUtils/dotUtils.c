@@ -90,15 +90,6 @@ DotNode *preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer,
 
   pANTLR3_UINT8 tokenText =
       root->getToken(root)->getText(root->getToken(root))->chars;
-  // if(strcmp((const char*) label, "ARRAY_SIZE") == 0) {
-  //   ANTLR3_UINT32 childCount = root->getChildCount(root);
-  //   for (uint32_t i = 0; i < childCount; i++) {
-  //     root->deleteChild(root, i);
-  //   }
-  //   pANTLR3_COMMON_TOKEN token = antlr3CommonTokenNew(0);
-  //   pANTLR3_COMMON_TREE tree = antlr3CommonTreeNewFromToken(token);
-  //   root->addChild(root, tree->super);
-  // }
 
   char* label = removeQuotes((const char*)tokenText);
 

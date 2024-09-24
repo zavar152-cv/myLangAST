@@ -20,8 +20,10 @@ int main(string[] args) {
                 buzz();
                 int t;
             } else {
-                fuzz();
-                char k;
+                {
+                    fuzz();
+                    char k;
+                }
             }
         }
     } else {
@@ -45,7 +47,7 @@ myInt[] buzz() {
     }
 }
 
-int fuzz(bool b, int k, myType mt) {
+fuzz(bool b, int k, myType mt) {
     string test = "wasd";
     var = --1 + c * -5 + !f;
     var2 = --2 + c1 * -5 + !f;
