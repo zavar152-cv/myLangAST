@@ -81,6 +81,7 @@ argDef
 statement
     : var ';' -> var
     | statementBlock -> statementBlock
+    | ifStatement -> ifStatement
     | whileStatement -> whileStatement
     | doWhileStatement -> doWhileStatement
     | 'break' ';' -> ^(BREAK)
@@ -118,6 +119,11 @@ builtinType
 
 customType
     : identifier -> ^(CUSTOM_TYPE identifier)
+    ;
+
+ifStatement
+    : 'if' '(' expr ')' statement ('else' statement)? 
+        -> ^(IF ^(EXPR expr) statement ^(ELSE statement)?)
     ;
 
 statementBlock

@@ -10,6 +10,23 @@ int main(string[] args) {
     arr[l] = fuzz(true, 0, "testString");
     arr[s + i * -7] = 0;
     ret = buzz(k, a);
+    if(true) {
+        if (1 + d - 6) {
+           arr[3] = 9;
+        } else {
+            var = 1;
+            myType t;
+            if (1) {
+                buzz();
+                int t;
+            } else {
+                fuzz();
+                char k;
+            }
+        }
+    } else {
+        break;
+    }
 }
 
 myInt[] buzz() {
