@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "ExampleLexer.h"
-#include "ExampleParser.h"
+#include "MyLangLexer.h"
+#include "MyLangParser.h"
 #include "errorsUtils/error.h"
 #include "dotUtils/dotUtils.h"
 
@@ -13,15 +13,15 @@ int main(int argc, char *argv[]) {
   printf("%s\n", argv[1]);
 
   pANTLR3_INPUT_STREAM input;
-  pExampleLexer lex;
+  pMyLangLexer lex;
   pANTLR3_COMMON_TOKEN_STREAM tokens;
-  pExampleParser parser;
+  pMyLangParser parser;
 
   input = antlr3FileStreamNew(filename, ANTLR3_ENC_8BIT);
-  lex = ExampleLexerNew(input);
+  lex = MyLangLexerNew(input);
   lex->pLexer->rec->reportError = reportLexerError;
   tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT, TOKENSOURCE(lex));
-  parser = ExampleParserNew(tokens);
+  parser = MyLangParserNew(tokens);
 
   ErrorContext errorContext;
   initErrorContext(&errorContext);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   parser->pParser->rec->state->userp = &errorContext;
   parser->pParser->rec->displayRecognitionError = extractRecognitionError;
 
-  ExampleParser_source_return r = parser->source(parser);
+  MyLangParser_source_return r = parser->source(parser);
   ANTLR3_UINT32 errCount = parser->pParser->rec->state->errorCount;
 
   DotNode* dotTree = NULL;

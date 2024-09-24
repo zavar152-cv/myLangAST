@@ -1,4 +1,4 @@
-grammar Example;
+grammar MyLang;
 
 options {
     language=C;
@@ -22,7 +22,7 @@ tokens {
     NOT;
     BOOL;
     STR;
-    RUNE;
+    SYMB;
     HEX;
     BITS;
     DEC;
@@ -122,8 +122,7 @@ customType
     ;
 
 ifStatement
-    : 'if' '(' expr ')' statement ('else' statement)? 
-        -> ^(IF ^(EXPR expr) statement ^(ELSE statement)?)
+    : 'if' '(' expr ')' statement ('else' statement)? -> ^(IF ^(EXPR expr) statement ^(ELSE statement)?)
     ;
 
 statementBlock
@@ -131,13 +130,11 @@ statementBlock
     ;
 
 whileStatement
-    : 'while' '(' expr ')' statement 
-        -> ^(WHILE ^(EXPR expr) statement)
+    : 'while' '(' expr ')' statement -> ^(WHILE ^(EXPR expr) statement)
     ;
 
 doWhileStatement
-    : 'do' statementBlock 'while' '(' expr ')' ';' 
-        -> ^(DO_WHILE statementBlock ^(EXPR expr))
+    : 'do' statementBlock 'while' '(' expr ')' ';' -> ^(DO_WHILE statementBlock ^(EXPR expr))
     ;
 
 exprStatement
@@ -157,7 +154,7 @@ addExpr
     ;
 
 mulExpr
-    : unaryExpr ((mul^ | divide^) unaryExpr)*
+    : unaryExpr ((mul^ | divide^ | mod^) unaryExpr)*
     ;
 
 unaryExpr
@@ -196,24 +193,10 @@ place
 literal
     : boolLit -> ^(BOOL boolLit)
     | str -> ^(STR str)
-    | rune -> ^(RUNE rune)
+    | symb -> ^(SYMB symb)
     | hex -> ^(HEX hex)
     | bits -> ^(BITS bits)
     | dec -> ^(DEC dec)
-    ;
-
-binOp
-    : assign
-    | plus
-    | minus
-    | mul
-    | divide
-    | eq
-    | neq
-    | le
-    | gr
-    | leEq
-    | grEq
     ;
 
 unOp
@@ -224,7 +207,7 @@ unOp
 identifier: IDENTIFIER_TOKEN;
 
 str: STR_TOKEN;
-rune: CHAR_TOKEN;
+symb: CHAR_TOKEN;
 hex: HEX_TOKEN;
 bits: BITS_TOKEN;
 dec: DEC_TOKEN;
@@ -235,6 +218,7 @@ plus: PLUS_TOKEN;
 mul: MUL_TOKEN;
 assign: ASSIGN_TOKEN;
 divide: DIV_TOKEN;
+mod: MOD_TOKEN;
 eq: EQ_TOKEN;
 neq: NEQ_TOKEN;
 le: LE_TOKEN;
@@ -257,6 +241,7 @@ PLUS_TOKEN: '+';
 MUL_TOKEN: '*';
 ASSIGN_TOKEN: '=';
 DIV_TOKEN: '/';
+MOD_TOKEN: '%';
 EQ_TOKEN: '==';
 NEQ_TOKEN: '!=';
 LE_TOKEN: '<';
@@ -273,23 +258,13 @@ ULONG_TYPE: 'ulong';
 CHAR_TYPE: 'char';
 STRING_TYPE: 'string';
 
-BOOL_TOKEN: (TRUE | FALSE) ;
-IDENTIFIER_TOKEN: (ALPHA | SPECIAL) (ALPHA | SPECIAL | DIGIT)* ;
-BITS_TOKEN: '0' ('b'|'B') BINARY_DIGIT+ ;
-HEX_TOKEN: '0'('x'|'X') HEX_DIGIT+ ;
-DEC_TOKEN: DIGIT+ ;
+BOOL_TOKEN: ('true' | 'false') ;
+IDENTIFIER_TOKEN: (('a'..'z' | 'A'..'Z') | ('_')) (('a'..'z' | 'A'..'Z') | ('_') | ('0'..'9'))* ;
+BITS_TOKEN: '0' ('b'|'B') ('0' | '1')+ ;
+HEX_TOKEN: '0'('x'|'X') ('0'..'9' | 'a'..'f' | 'A'..'F')+ ;
+DEC_TOKEN: ('0'..'9')+ ;
 CHAR_TOKEN: '\'' ~('\'') '\'' ;
 STR_TOKEN: ('"') ('\\' . | ~('\\'|'"'))* ('"');
 
 NEWLINE:'\r'? '\n' { SKIP(); };
-WSS: WS+ { SKIP(); };
-
-
-fragment TRUE: 'true';
-fragment FALSE: 'false';
-fragment ALPHA: ('a'..'z' | 'A'..'Z');
-fragment SPECIAL: ('_');
-fragment DIGIT: ('0'..'9');
-fragment BINARY_DIGIT: ('0' | '1');
-fragment HEX_DIGIT: ('0'..'9' | 'a'..'f' | 'A'..'F');
-fragment WS:(' '|'\t') ;
+WSS: (' '|'\t')+ { SKIP(); };

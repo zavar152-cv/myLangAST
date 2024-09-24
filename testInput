@@ -1,9 +1,9 @@
 int main(string[] args) {
-    k = --a + c * -5 + !f + -k * 7 + (4 + 5);
+    k = --a + c * -5 + !f + -k * 7 % (4 + 5);
     int l = 5, s = 9, i;
     Mybool b;
     int[,,,] arr;
-    string st = "lol";
+    string st = "";
     l = a;
     arr[1] = 9;
     arr[0] = k;
