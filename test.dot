@@ -198,7 +198,7 @@ digraph Tree {
     node_96 -> node_98;
     node_98 [label="STR"]
     node_98 -> node_99;
-    node_99 [label="lol"]
+    node_99 [label=""]
     node_16 -> node_100;
     node_100 [label="EXPR"]
     node_100 -> node_101;

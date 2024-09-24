@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "errorsUtils/error.h"
+#include "errorsUtils/errorUtils.h"
 
 void initErrorContext(ErrorContext *context) {
   context->errorCount = 0;

@@ -5,7 +5,7 @@
 
 #include "MyLangLexer.h"
 #include "MyLangParser.h"
-#include "errorsUtils/error.h"
+#include "errorsUtils/errorUtils.h"
 #include "dotUtils/dotUtils.h"
 
 int main(int argc, char *argv[]) {
