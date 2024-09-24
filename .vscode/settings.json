@@ -1,8 +1,0 @@
-{
-  "files.associations": {
-    "other.h": "c",
-    "examplelexer.h": "c",
-    "exampleparser.h": "c"
-  },
-  "C_Cpp.errorSquiggles": "enabled"
-}
