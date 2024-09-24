@@ -51,6 +51,10 @@ tokens {
     FUNC_CALL;
     EXPR_LIST;
     INDEXING;
+    WHILE;
+    DO_WHILE;
+    IF;
+    ELSE;
 }
 
 source
@@ -77,6 +81,8 @@ argDef
 statement
     : var ';' -> var
     | statementBlock -> statementBlock
+    | whileStatement -> whileStatement
+    | doWhileStatement -> doWhileStatement
     | 'break' ';' -> ^(BREAK)
     | exprStatement -> exprStatement
     ;
@@ -116,6 +122,16 @@ customType
 
 statementBlock
     : '{' statement* '}' -> ^(BLOCK statement*)
+    ;
+
+whileStatement
+    : 'while' '(' expr ')' statement 
+        -> ^(WHILE ^(EXPR expr) statement)
+    ;
+
+doWhileStatement
+    : 'do' statementBlock 'while' '(' expr ')' ';' 
+        -> ^(DO_WHILE statementBlock ^(EXPR expr))
     ;
 
 exprStatement

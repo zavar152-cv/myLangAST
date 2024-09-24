@@ -17,6 +17,15 @@ myInt[] buzz() {
     string test = "wasd";
     var = --1 + c * -5 + !f;
     var2 = --2 + c1 * -5 + !f;
+    while(a + 1 * -6) {
+        int wVar = 0;
+        wVar = 9 + 1;
+        bool[,,] bArr;
+        bArr[1] = true;
+        do {
+            var = --1 + c * -5 + !f;
+        } while (true + false);
+    }
 }
 
 int fuzz(bool b, int k, myType mt) {

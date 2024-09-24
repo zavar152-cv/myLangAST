@@ -461,154 +461,312 @@ digraph Tree {
     nodeIDENTIFIER_229 [label="IDENTIFIER"]
     nodeIDENTIFIER_229 -> nodef_230;
     nodef_230 [label="f"]
-    nodeSOURCE_0 -> nodeFUNC_DEF_231;
-    nodeFUNC_DEF_231 [label="FUNC_DEF"]
-    nodeFUNC_DEF_231 -> nodeFUNC_SIGNATURE_232;
-    nodeFUNC_SIGNATURE_232 [label="FUNC_SIGNATURE"]
-    nodeFUNC_SIGNATURE_232 -> nodeTYPEREF_233;
-    nodeTYPEREF_233 [label="TYPEREF"]
-    nodeTYPEREF_233 -> nodeBUILTIN_TYPE_234;
-    nodeBUILTIN_TYPE_234 [label="BUILTIN_TYPE"]
-    nodeBUILTIN_TYPE_234 -> nodeint_235;
-    nodeint_235 [label="int"]
-    nodeFUNC_SIGNATURE_232 -> nodeNAME_236;
-    nodeNAME_236 [label="NAME"]
-    nodeNAME_236 -> nodefuzz_237;
-    nodefuzz_237 [label="fuzz"]
-    nodeFUNC_SIGNATURE_232 -> nodeARGDEF_LIST_238;
-    nodeARGDEF_LIST_238 [label="ARGDEF_LIST"]
-    nodeARGDEF_LIST_238 -> nodeARGDEF_239;
-    nodeARGDEF_239 [label="ARGDEF"]
-    nodeARGDEF_239 -> nodeTYPEREF_240;
-    nodeTYPEREF_240 [label="TYPEREF"]
-    nodeTYPEREF_240 -> nodeBUILTIN_TYPE_241;
-    nodeBUILTIN_TYPE_241 [label="BUILTIN_TYPE"]
-    nodeBUILTIN_TYPE_241 -> nodebool_242;
-    nodebool_242 [label="bool"]
-    nodeARGDEF_239 -> nodeIDENTIFIER_243;
-    nodeIDENTIFIER_243 [label="IDENTIFIER"]
-    nodeIDENTIFIER_243 -> nodeb_244;
-    nodeb_244 [label="b"]
-    nodeARGDEF_LIST_238 -> nodeARGDEF_245;
-    nodeARGDEF_245 [label="ARGDEF"]
-    nodeARGDEF_245 -> nodeTYPEREF_246;
-    nodeTYPEREF_246 [label="TYPEREF"]
-    nodeTYPEREF_246 -> nodeBUILTIN_TYPE_247;
-    nodeBUILTIN_TYPE_247 [label="BUILTIN_TYPE"]
-    nodeBUILTIN_TYPE_247 -> nodeint_248;
-    nodeint_248 [label="int"]
-    nodeARGDEF_245 -> nodeIDENTIFIER_249;
-    nodeIDENTIFIER_249 [label="IDENTIFIER"]
-    nodeIDENTIFIER_249 -> nodek_250;
-    nodek_250 [label="k"]
-    nodeARGDEF_LIST_238 -> nodeARGDEF_251;
-    nodeARGDEF_251 [label="ARGDEF"]
-    nodeARGDEF_251 -> nodeTYPEREF_252;
-    nodeTYPEREF_252 [label="TYPEREF"]
-    nodeTYPEREF_252 -> nodeCUSTOM_TYPE_253;
-    nodeCUSTOM_TYPE_253 [label="CUSTOM_TYPE"]
-    nodeCUSTOM_TYPE_253 -> nodemyType_254;
-    nodemyType_254 [label="myType"]
-    nodeARGDEF_251 -> nodeIDENTIFIER_255;
+    nodeBLOCK_178 -> nodeWHILE_231;
+    nodeWHILE_231 [label="WHILE"]
+    nodeWHILE_231 -> nodeEXPR_232;
+    nodeEXPR_232 [label="EXPR"]
+    nodeEXPR_232 -> nodePLUS_233;
+    nodePLUS_233 [label="+"]
+    nodePLUS_233 -> nodeIDENTIFIER_234;
+    nodeIDENTIFIER_234 [label="IDENTIFIER"]
+    nodeIDENTIFIER_234 -> nodea_235;
+    nodea_235 [label="a"]
+    nodePLUS_233 -> nodeMUL_236;
+    nodeMUL_236 [label="*"]
+    nodeMUL_236 -> nodeDEC_237;
+    nodeDEC_237 [label="DEC"]
+    nodeDEC_237 -> node1_238;
+    node1_238 [label="1"]
+    nodeMUL_236 -> nodeNEG_239;
+    nodeNEG_239 [label="NEG"]
+    nodeNEG_239 -> nodeDEC_240;
+    nodeDEC_240 [label="DEC"]
+    nodeDEC_240 -> node6_241;
+    node6_241 [label="6"]
+    nodeWHILE_231 -> nodeBLOCK_242;
+    nodeBLOCK_242 [label="BLOCK"]
+    nodeBLOCK_242 -> nodeVAR_243;
+    nodeVAR_243 [label="VAR"]
+    nodeVAR_243 -> nodeTYPEREF_244;
+    nodeTYPEREF_244 [label="TYPEREF"]
+    nodeTYPEREF_244 -> nodeBUILTIN_TYPE_245;
+    nodeBUILTIN_TYPE_245 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_245 -> nodeint_246;
+    nodeint_246 [label="int"]
+    nodeVAR_243 -> nodeIDENTIFIER_247;
+    nodeIDENTIFIER_247 [label="IDENTIFIER"]
+    nodeIDENTIFIER_247 -> nodewVar_248;
+    nodewVar_248 [label="wVar"]
+    nodeVAR_243 -> nodeINIT_249;
+    nodeINIT_249 [label="INIT"]
+    nodeINIT_249 -> nodewVar_250;
+    nodewVar_250 [label="wVar"]
+    nodeINIT_249 -> nodeDEC_251;
+    nodeDEC_251 [label="DEC"]
+    nodeDEC_251 -> node0_252;
+    node0_252 [label="0"]
+    nodeBLOCK_242 -> nodeEXPR_253;
+    nodeEXPR_253 [label="EXPR"]
+    nodeEXPR_253 -> nodeASSIGN_254;
+    nodeASSIGN_254 [label="="]
+    nodeASSIGN_254 -> nodeIDENTIFIER_255;
     nodeIDENTIFIER_255 [label="IDENTIFIER"]
-    nodeIDENTIFIER_255 -> nodemt_256;
-    nodemt_256 [label="mt"]
-    nodeFUNC_DEF_231 -> nodeBLOCK_257;
-    nodeBLOCK_257 [label="BLOCK"]
-    nodeBLOCK_257 -> nodeVAR_258;
-    nodeVAR_258 [label="VAR"]
-    nodeVAR_258 -> nodeTYPEREF_259;
-    nodeTYPEREF_259 [label="TYPEREF"]
-    nodeTYPEREF_259 -> nodeBUILTIN_TYPE_260;
-    nodeBUILTIN_TYPE_260 [label="BUILTIN_TYPE"]
-    nodeBUILTIN_TYPE_260 -> nodestring_261;
-    nodestring_261 [label="string"]
-    nodeVAR_258 -> nodeIDENTIFIER_262;
-    nodeIDENTIFIER_262 [label="IDENTIFIER"]
-    nodeIDENTIFIER_262 -> nodetest_263;
-    nodetest_263 [label="test"]
-    nodeVAR_258 -> nodeINIT_264;
-    nodeINIT_264 [label="INIT"]
-    nodeINIT_264 -> nodetest_265;
-    nodetest_265 [label="test"]
-    nodeINIT_264 -> nodeSTR_266;
-    nodeSTR_266 [label="STR"]
-    nodeSTR_266 -> nodewasd_267;
-    nodewasd_267 [label="wasd"]
-    nodeBLOCK_257 -> nodeEXPR_268;
-    nodeEXPR_268 [label="EXPR"]
-    nodeEXPR_268 -> nodeASSIGN_269;
-    nodeASSIGN_269 [label="="]
-    nodeASSIGN_269 -> nodeIDENTIFIER_270;
+    nodeIDENTIFIER_255 -> nodewVar_256;
+    nodewVar_256 [label="wVar"]
+    nodeASSIGN_254 -> nodePLUS_257;
+    nodePLUS_257 [label="+"]
+    nodePLUS_257 -> nodeDEC_258;
+    nodeDEC_258 [label="DEC"]
+    nodeDEC_258 -> node9_259;
+    node9_259 [label="9"]
+    nodePLUS_257 -> nodeDEC_260;
+    nodeDEC_260 [label="DEC"]
+    nodeDEC_260 -> node1_261;
+    node1_261 [label="1"]
+    nodeBLOCK_242 -> nodeVAR_262;
+    nodeVAR_262 [label="VAR"]
+    nodeVAR_262 -> nodeTYPEREF_263;
+    nodeTYPEREF_263 [label="TYPEREF"]
+    nodeTYPEREF_263 -> nodeBUILTIN_TYPE_264;
+    nodeBUILTIN_TYPE_264 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_264 -> nodebool_265;
+    nodebool_265 [label="bool"]
+    nodeTYPEREF_263 -> nodeARRAY_266;
+    nodeARRAY_266 [label="ARRAY"]
+    nodeARRAY_266 -> nodeARRAY_SIZE_267;
+    nodeARRAY_SIZE_267 [label="ARRAY_SIZE"]
+    nodeARRAY_SIZE_267 -> nodeCOMMA_268;
+    nodeCOMMA_268 [label=","]
+    nodeARRAY_SIZE_267 -> nodeCOMMA_269;
+    nodeCOMMA_269 [label=","]
+    nodeVAR_262 -> nodeIDENTIFIER_270;
     nodeIDENTIFIER_270 [label="IDENTIFIER"]
-    nodeIDENTIFIER_270 -> nodevar_271;
-    nodevar_271 [label="var"]
-    nodeASSIGN_269 -> nodePLUS_272;
-    nodePLUS_272 [label="+"]
-    nodePLUS_272 -> nodePLUS_273;
-    nodePLUS_273 [label="+"]
-    nodePLUS_273 -> nodeNEG_274;
-    nodeNEG_274 [label="NEG"]
-    nodeNEG_274 -> nodeNEG_275;
-    nodeNEG_275 [label="NEG"]
-    nodeNEG_275 -> nodeDEC_276;
-    nodeDEC_276 [label="DEC"]
-    nodeDEC_276 -> node1_277;
-    node1_277 [label="1"]
-    nodePLUS_273 -> nodeMUL_278;
-    nodeMUL_278 [label="*"]
-    nodeMUL_278 -> nodeIDENTIFIER_279;
-    nodeIDENTIFIER_279 [label="IDENTIFIER"]
-    nodeIDENTIFIER_279 -> nodec_280;
-    nodec_280 [label="c"]
-    nodeMUL_278 -> nodeNEG_281;
-    nodeNEG_281 [label="NEG"]
-    nodeNEG_281 -> nodeDEC_282;
-    nodeDEC_282 [label="DEC"]
-    nodeDEC_282 -> node5_283;
-    node5_283 [label="5"]
-    nodePLUS_272 -> nodeNOT_284;
-    nodeNOT_284 [label="NOT"]
-    nodeNOT_284 -> nodeIDENTIFIER_285;
-    nodeIDENTIFIER_285 [label="IDENTIFIER"]
-    nodeIDENTIFIER_285 -> nodef_286;
-    nodef_286 [label="f"]
-    nodeBLOCK_257 -> nodeEXPR_287;
-    nodeEXPR_287 [label="EXPR"]
-    nodeEXPR_287 -> nodeASSIGN_288;
-    nodeASSIGN_288 [label="="]
-    nodeASSIGN_288 -> nodeIDENTIFIER_289;
-    nodeIDENTIFIER_289 [label="IDENTIFIER"]
-    nodeIDENTIFIER_289 -> nodevar2_290;
-    nodevar2_290 [label="var2"]
-    nodeASSIGN_288 -> nodePLUS_291;
-    nodePLUS_291 [label="+"]
-    nodePLUS_291 -> nodePLUS_292;
-    nodePLUS_292 [label="+"]
-    nodePLUS_292 -> nodeNEG_293;
-    nodeNEG_293 [label="NEG"]
-    nodeNEG_293 -> nodeNEG_294;
-    nodeNEG_294 [label="NEG"]
-    nodeNEG_294 -> nodeDEC_295;
-    nodeDEC_295 [label="DEC"]
-    nodeDEC_295 -> node2_296;
-    node2_296 [label="2"]
-    nodePLUS_292 -> nodeMUL_297;
-    nodeMUL_297 [label="*"]
-    nodeMUL_297 -> nodeIDENTIFIER_298;
-    nodeIDENTIFIER_298 [label="IDENTIFIER"]
-    nodeIDENTIFIER_298 -> nodec1_299;
-    nodec1_299 [label="c1"]
-    nodeMUL_297 -> nodeNEG_300;
-    nodeNEG_300 [label="NEG"]
-    nodeNEG_300 -> nodeDEC_301;
-    nodeDEC_301 [label="DEC"]
-    nodeDEC_301 -> node5_302;
-    node5_302 [label="5"]
-    nodePLUS_291 -> nodeNOT_303;
-    nodeNOT_303 [label="NOT"]
-    nodeNOT_303 -> nodeIDENTIFIER_304;
-    nodeIDENTIFIER_304 [label="IDENTIFIER"]
-    nodeIDENTIFIER_304 -> nodef_305;
-    nodef_305 [label="f"]
+    nodeIDENTIFIER_270 -> nodebArr_271;
+    nodebArr_271 [label="bArr"]
+    nodeVAR_262 -> nodeINIT_272;
+    nodeINIT_272 [label="INIT"]
+    nodeINIT_272 -> nodebArr_273;
+    nodebArr_273 [label="bArr"]
+    nodeBLOCK_242 -> nodeEXPR_274;
+    nodeEXPR_274 [label="EXPR"]
+    nodeEXPR_274 -> nodeASSIGN_275;
+    nodeASSIGN_275 [label="="]
+    nodeASSIGN_275 -> nodeINDEXING_276;
+    nodeINDEXING_276 [label="INDEXING"]
+    nodeINDEXING_276 -> nodebArr_277;
+    nodebArr_277 [label="bArr"]
+    nodeINDEXING_276 -> nodeEXPR_LIST_278;
+    nodeEXPR_LIST_278 [label="EXPR_LIST"]
+    nodeEXPR_LIST_278 -> nodeDEC_279;
+    nodeDEC_279 [label="DEC"]
+    nodeDEC_279 -> node1_280;
+    node1_280 [label="1"]
+    nodeASSIGN_275 -> nodeBOOL_281;
+    nodeBOOL_281 [label="BOOL"]
+    nodeBOOL_281 -> nodetrue_282;
+    nodetrue_282 [label="true"]
+    nodeBLOCK_242 -> nodeDO_WHILE_283;
+    nodeDO_WHILE_283 [label="DO_WHILE"]
+    nodeDO_WHILE_283 -> nodeBLOCK_284;
+    nodeBLOCK_284 [label="BLOCK"]
+    nodeBLOCK_284 -> nodeEXPR_285;
+    nodeEXPR_285 [label="EXPR"]
+    nodeEXPR_285 -> nodeASSIGN_286;
+    nodeASSIGN_286 [label="="]
+    nodeASSIGN_286 -> nodeIDENTIFIER_287;
+    nodeIDENTIFIER_287 [label="IDENTIFIER"]
+    nodeIDENTIFIER_287 -> nodevar_288;
+    nodevar_288 [label="var"]
+    nodeASSIGN_286 -> nodePLUS_289;
+    nodePLUS_289 [label="+"]
+    nodePLUS_289 -> nodePLUS_290;
+    nodePLUS_290 [label="+"]
+    nodePLUS_290 -> nodeNEG_291;
+    nodeNEG_291 [label="NEG"]
+    nodeNEG_291 -> nodeNEG_292;
+    nodeNEG_292 [label="NEG"]
+    nodeNEG_292 -> nodeDEC_293;
+    nodeDEC_293 [label="DEC"]
+    nodeDEC_293 -> node1_294;
+    node1_294 [label="1"]
+    nodePLUS_290 -> nodeMUL_295;
+    nodeMUL_295 [label="*"]
+    nodeMUL_295 -> nodeIDENTIFIER_296;
+    nodeIDENTIFIER_296 [label="IDENTIFIER"]
+    nodeIDENTIFIER_296 -> nodec_297;
+    nodec_297 [label="c"]
+    nodeMUL_295 -> nodeNEG_298;
+    nodeNEG_298 [label="NEG"]
+    nodeNEG_298 -> nodeDEC_299;
+    nodeDEC_299 [label="DEC"]
+    nodeDEC_299 -> node5_300;
+    node5_300 [label="5"]
+    nodePLUS_289 -> nodeNOT_301;
+    nodeNOT_301 [label="NOT"]
+    nodeNOT_301 -> nodeIDENTIFIER_302;
+    nodeIDENTIFIER_302 [label="IDENTIFIER"]
+    nodeIDENTIFIER_302 -> nodef_303;
+    nodef_303 [label="f"]
+    nodeDO_WHILE_283 -> nodeEXPR_304;
+    nodeEXPR_304 [label="EXPR"]
+    nodeEXPR_304 -> nodePLUS_305;
+    nodePLUS_305 [label="+"]
+    nodePLUS_305 -> nodeBOOL_306;
+    nodeBOOL_306 [label="BOOL"]
+    nodeBOOL_306 -> nodetrue_307;
+    nodetrue_307 [label="true"]
+    nodePLUS_305 -> nodeBOOL_308;
+    nodeBOOL_308 [label="BOOL"]
+    nodeBOOL_308 -> nodefalse_309;
+    nodefalse_309 [label="false"]
+    nodeSOURCE_0 -> nodeFUNC_DEF_310;
+    nodeFUNC_DEF_310 [label="FUNC_DEF"]
+    nodeFUNC_DEF_310 -> nodeFUNC_SIGNATURE_311;
+    nodeFUNC_SIGNATURE_311 [label="FUNC_SIGNATURE"]
+    nodeFUNC_SIGNATURE_311 -> nodeTYPEREF_312;
+    nodeTYPEREF_312 [label="TYPEREF"]
+    nodeTYPEREF_312 -> nodeBUILTIN_TYPE_313;
+    nodeBUILTIN_TYPE_313 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_313 -> nodeint_314;
+    nodeint_314 [label="int"]
+    nodeFUNC_SIGNATURE_311 -> nodeNAME_315;
+    nodeNAME_315 [label="NAME"]
+    nodeNAME_315 -> nodefuzz_316;
+    nodefuzz_316 [label="fuzz"]
+    nodeFUNC_SIGNATURE_311 -> nodeARGDEF_LIST_317;
+    nodeARGDEF_LIST_317 [label="ARGDEF_LIST"]
+    nodeARGDEF_LIST_317 -> nodeARGDEF_318;
+    nodeARGDEF_318 [label="ARGDEF"]
+    nodeARGDEF_318 -> nodeTYPEREF_319;
+    nodeTYPEREF_319 [label="TYPEREF"]
+    nodeTYPEREF_319 -> nodeBUILTIN_TYPE_320;
+    nodeBUILTIN_TYPE_320 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_320 -> nodebool_321;
+    nodebool_321 [label="bool"]
+    nodeARGDEF_318 -> nodeIDENTIFIER_322;
+    nodeIDENTIFIER_322 [label="IDENTIFIER"]
+    nodeIDENTIFIER_322 -> nodeb_323;
+    nodeb_323 [label="b"]
+    nodeARGDEF_LIST_317 -> nodeARGDEF_324;
+    nodeARGDEF_324 [label="ARGDEF"]
+    nodeARGDEF_324 -> nodeTYPEREF_325;
+    nodeTYPEREF_325 [label="TYPEREF"]
+    nodeTYPEREF_325 -> nodeBUILTIN_TYPE_326;
+    nodeBUILTIN_TYPE_326 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_326 -> nodeint_327;
+    nodeint_327 [label="int"]
+    nodeARGDEF_324 -> nodeIDENTIFIER_328;
+    nodeIDENTIFIER_328 [label="IDENTIFIER"]
+    nodeIDENTIFIER_328 -> nodek_329;
+    nodek_329 [label="k"]
+    nodeARGDEF_LIST_317 -> nodeARGDEF_330;
+    nodeARGDEF_330 [label="ARGDEF"]
+    nodeARGDEF_330 -> nodeTYPEREF_331;
+    nodeTYPEREF_331 [label="TYPEREF"]
+    nodeTYPEREF_331 -> nodeCUSTOM_TYPE_332;
+    nodeCUSTOM_TYPE_332 [label="CUSTOM_TYPE"]
+    nodeCUSTOM_TYPE_332 -> nodemyType_333;
+    nodemyType_333 [label="myType"]
+    nodeARGDEF_330 -> nodeIDENTIFIER_334;
+    nodeIDENTIFIER_334 [label="IDENTIFIER"]
+    nodeIDENTIFIER_334 -> nodemt_335;
+    nodemt_335 [label="mt"]
+    nodeFUNC_DEF_310 -> nodeBLOCK_336;
+    nodeBLOCK_336 [label="BLOCK"]
+    nodeBLOCK_336 -> nodeVAR_337;
+    nodeVAR_337 [label="VAR"]
+    nodeVAR_337 -> nodeTYPEREF_338;
+    nodeTYPEREF_338 [label="TYPEREF"]
+    nodeTYPEREF_338 -> nodeBUILTIN_TYPE_339;
+    nodeBUILTIN_TYPE_339 [label="BUILTIN_TYPE"]
+    nodeBUILTIN_TYPE_339 -> nodestring_340;
+    nodestring_340 [label="string"]
+    nodeVAR_337 -> nodeIDENTIFIER_341;
+    nodeIDENTIFIER_341 [label="IDENTIFIER"]
+    nodeIDENTIFIER_341 -> nodetest_342;
+    nodetest_342 [label="test"]
+    nodeVAR_337 -> nodeINIT_343;
+    nodeINIT_343 [label="INIT"]
+    nodeINIT_343 -> nodetest_344;
+    nodetest_344 [label="test"]
+    nodeINIT_343 -> nodeSTR_345;
+    nodeSTR_345 [label="STR"]
+    nodeSTR_345 -> nodewasd_346;
+    nodewasd_346 [label="wasd"]
+    nodeBLOCK_336 -> nodeEXPR_347;
+    nodeEXPR_347 [label="EXPR"]
+    nodeEXPR_347 -> nodeASSIGN_348;
+    nodeASSIGN_348 [label="="]
+    nodeASSIGN_348 -> nodeIDENTIFIER_349;
+    nodeIDENTIFIER_349 [label="IDENTIFIER"]
+    nodeIDENTIFIER_349 -> nodevar_350;
+    nodevar_350 [label="var"]
+    nodeASSIGN_348 -> nodePLUS_351;
+    nodePLUS_351 [label="+"]
+    nodePLUS_351 -> nodePLUS_352;
+    nodePLUS_352 [label="+"]
+    nodePLUS_352 -> nodeNEG_353;
+    nodeNEG_353 [label="NEG"]
+    nodeNEG_353 -> nodeNEG_354;
+    nodeNEG_354 [label="NEG"]
+    nodeNEG_354 -> nodeDEC_355;
+    nodeDEC_355 [label="DEC"]
+    nodeDEC_355 -> node1_356;
+    node1_356 [label="1"]
+    nodePLUS_352 -> nodeMUL_357;
+    nodeMUL_357 [label="*"]
+    nodeMUL_357 -> nodeIDENTIFIER_358;
+    nodeIDENTIFIER_358 [label="IDENTIFIER"]
+    nodeIDENTIFIER_358 -> nodec_359;
+    nodec_359 [label="c"]
+    nodeMUL_357 -> nodeNEG_360;
+    nodeNEG_360 [label="NEG"]
+    nodeNEG_360 -> nodeDEC_361;
+    nodeDEC_361 [label="DEC"]
+    nodeDEC_361 -> node5_362;
+    node5_362 [label="5"]
+    nodePLUS_351 -> nodeNOT_363;
+    nodeNOT_363 [label="NOT"]
+    nodeNOT_363 -> nodeIDENTIFIER_364;
+    nodeIDENTIFIER_364 [label="IDENTIFIER"]
+    nodeIDENTIFIER_364 -> nodef_365;
+    nodef_365 [label="f"]
+    nodeBLOCK_336 -> nodeEXPR_366;
+    nodeEXPR_366 [label="EXPR"]
+    nodeEXPR_366 -> nodeASSIGN_367;
+    nodeASSIGN_367 [label="="]
+    nodeASSIGN_367 -> nodeIDENTIFIER_368;
+    nodeIDENTIFIER_368 [label="IDENTIFIER"]
+    nodeIDENTIFIER_368 -> nodevar2_369;
+    nodevar2_369 [label="var2"]
+    nodeASSIGN_367 -> nodePLUS_370;
+    nodePLUS_370 [label="+"]
+    nodePLUS_370 -> nodePLUS_371;
+    nodePLUS_371 [label="+"]
+    nodePLUS_371 -> nodeNEG_372;
+    nodeNEG_372 [label="NEG"]
+    nodeNEG_372 -> nodeNEG_373;
+    nodeNEG_373 [label="NEG"]
+    nodeNEG_373 -> nodeDEC_374;
+    nodeDEC_374 [label="DEC"]
+    nodeDEC_374 -> node2_375;
+    node2_375 [label="2"]
+    nodePLUS_371 -> nodeMUL_376;
+    nodeMUL_376 [label="*"]
+    nodeMUL_376 -> nodeIDENTIFIER_377;
+    nodeIDENTIFIER_377 [label="IDENTIFIER"]
+    nodeIDENTIFIER_377 -> nodec1_378;
+    nodec1_378 [label="c1"]
+    nodeMUL_376 -> nodeNEG_379;
+    nodeNEG_379 [label="NEG"]
+    nodeNEG_379 -> nodeDEC_380;
+    nodeDEC_380 [label="DEC"]
+    nodeDEC_380 -> node5_381;
+    node5_381 [label="5"]
+    nodePLUS_370 -> nodeNOT_382;
+    nodeNOT_382 [label="NOT"]
+    nodeNOT_382 -> nodeIDENTIFIER_383;
+    nodeIDENTIFIER_383 [label="IDENTIFIER"]
+    nodeIDENTIFIER_383 -> nodef_384;
+    nodef_384 [label="f"]
 }
