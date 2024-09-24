@@ -50,7 +50,7 @@ void printErrors(ErrorContext *context) {
   ErrorNode *current = context->head;
   int i = 1;
   while (current != NULL) {
-    printf("Error %d in line %u at %d in token '%s': %s\n", i,
+    fprintf(stderr, "Error %d in line %u at %d in token '%s': %s\n", i,
            current->errorLine, current->errPosInLine,
            current->errTokenText, current->errorText);
     current = current->next;

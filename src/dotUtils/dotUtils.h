@@ -2,6 +2,8 @@
 #include <antlr3.h>
 #include <stdbool.h>
 
+#define FILE_ERROR -1
+
 typedef struct __attribute__((packed)) DotNode {
     struct DotNode** children;
     uint64_t id;
@@ -13,8 +15,10 @@ DotNode* newDotNode(uint64_t id, const char* label, uint32_t childCount);
 
 void destroyDotNodeTree(DotNode* root);
 
-DotNode* preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer, uint64_t *id, bool debug);
+DotNode* createDotTreeFromAntlrTree(pANTLR3_BASE_TREE root, uint64_t layer, uint64_t *id, bool debug);
 
 void writeTreeToDot(FILE *file, DotNode* root);
 
-void generateDotFile(DotNode* root, const char *filename);
+int generateDotFile(DotNode* root, const char *filename);
+
+int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree, const char *filename, bool debug);

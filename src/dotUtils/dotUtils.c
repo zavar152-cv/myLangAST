@@ -26,13 +26,13 @@ void destroyDotNodeTree(DotNode *root) {
   free(root);
 }
 
-char* removeQuotes(const char *str) {
-    int length = strlen(str);
-    if (length > 1 && str[0] == '"' && str[length - 1] == '"') {
-        str++;
-        length -= 2;
-    }
-    return strndup(str, length);
+char *removeQuotes(const char *str) {
+  int length = strlen(str);
+  if (length > 1 && str[0] == '"' && str[length - 1] == '"') {
+    str++;
+    length -= 2;
+  }
+  return strndup(str, length);
 }
 
 const char *postProcessingNodeToken(const char *tokenText) {
@@ -67,7 +67,7 @@ const char *postProcessingNodeToken(const char *tokenText) {
   }
 }
 
-DotNode *preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer,
+DotNode *createDotTreeFromAntlrTree(pANTLR3_BASE_TREE root, uint64_t layer,
                                    uint64_t *id, bool debug) {
   if (root == NULL) {
     return NULL;
@@ -75,15 +75,14 @@ DotNode *preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer,
 
   uint64_t currentId = (*id)++;
 
-  for (uint32_t i = 0; i < layer; i++) {
-    printf("  ");
-  }
-
   if (debug) {
+    for (uint32_t i = 0; i < layer; i++) {
+      printf("  ");
+    }
     pANTLR3_BASE_TREE parent = root->getParent(root);
-    char* tokenText = removeQuotes((const char *)root->getToken(root)
-                                             ->getText(root->getToken(root))
-                                             ->chars);
+    char *tokenText = removeQuotes((const char *)root->getToken(root)
+                                       ->getText(root->getToken(root))
+                                       ->chars);
     const char *nodeName = postProcessingNodeToken(tokenText);
     printf("node %s_%lu [label=\"%s\"]", nodeName, currentId, tokenText);
     printf("\n");
@@ -93,7 +92,7 @@ DotNode *preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer,
   pANTLR3_UINT8 tokenText =
       root->getToken(root)->getText(root->getToken(root))->chars;
 
-  char* label = removeQuotes((const char*)tokenText);
+  char *label = removeQuotes((const char *)tokenText);
 
   DotNode *newNode =
       newDotNode(currentId, (const char *)label, root->getChildCount(root));
@@ -101,7 +100,7 @@ DotNode *preorderTraversalWithCopy(pANTLR3_BASE_TREE root, uint64_t layer,
   free(label);
 
   for (uint32_t i = 0; i < root->getChildCount(root); i++) {
-    newNode->children[i] = preorderTraversalWithCopy(
+    newNode->children[i] = createDotTreeFromAntlrTree(
         (pANTLR3_BASE_TREE)root->getChild(root, i), layer + 1, id, debug);
   }
 
@@ -122,11 +121,10 @@ void writeTreeToDot(FILE *file, DotNode *root) {
   }
 }
 
-void generateDotFile(DotNode *root, const char *filename) {
+int generateDotFile(DotNode *root, const char *filename) {
   FILE *file = fopen(filename, "w");
   if (file == NULL) {
-    printf("Error opening file %s for writing.\n", filename);
-    return;
+    return FILE_ERROR;
   }
 
   fprintf(file, "digraph Tree {\n");
@@ -136,4 +134,22 @@ void generateDotFile(DotNode *root, const char *filename) {
 
   fprintf(file, "}\n");
   fclose(file);
+  return 0;
+}
+
+int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree,
+                                  const char *filename, bool debug) {
+  DotNode *dotTree = NULL;
+  uint64_t id = 0;
+
+  if (debug) {
+    printf("%s\n", tree->toStringTree(tree)->chars);
+    printf("%u\n", tree->getChildCount(tree));
+  }
+
+  dotTree = createDotTreeFromAntlrTree(tree, 0, &id, debug);
+  int err = generateDotFile(dotTree, filename);
+
+  destroyDotNodeTree(dotTree);
+  return err;
 }
