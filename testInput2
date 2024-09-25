@@ -1,8 +1,7 @@
 int main(string[] args) {
-    if(true) 
+    if(true) {
         break;
-        int a;
-    else {
+    } else {
         break;
     }
 }

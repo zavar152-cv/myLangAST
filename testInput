@@ -40,7 +40,7 @@ myInt[] buzz() {
         int wVar = 0;
         wVar = 9 + 1;
         bool[,,] bArr;
-        bArr[1] = true;
+        bArr[a[1]] = true;
         do {
             var = --1 + c * -5 + !f;
         } while (true + false);

@@ -1,7 +1,7 @@
 #include "grammar/myLang.h"
 #include <stdbool.h>
 
-void createMyLangResult(MyLangResult *result, pANTLR3_INPUT_STREAM input) {
+void parseMyLang(MyLangResult *result, pANTLR3_INPUT_STREAM input) {
   pMyLangLexer lex;
   pANTLR3_COMMON_TOKEN_STREAM tokens;
   pMyLangParser parser;

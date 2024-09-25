@@ -12,6 +12,6 @@ typedef struct MyLangResult {
     bool isValid;
 } MyLangResult;
 
-void createMyLangResult(MyLangResult *result, pANTLR3_INPUT_STREAM input);
+void parseMyLang(MyLangResult *result, pANTLR3_INPUT_STREAM input);
 
 void destroyMyLangResult(MyLangResult *result);
