@@ -1,0 +1,16 @@
+int main(string[] args) {
+    if(true) 
+        break;
+        int a;
+    else {
+        break;
+    }
+}
+
+myInt[] buzz() {
+    fuzz();
+}
+
+fuzz(bool b, int k, myType mt) {
+    string test = "wasd";
+}

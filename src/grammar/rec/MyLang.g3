@@ -59,7 +59,7 @@ tokens {
 
 source
     :
-    sourceItem* -> ^(SOURCE sourceItem*)
+    sourceItem* EOF -> ^(SOURCE sourceItem*)
     ;
 
 sourceItem
