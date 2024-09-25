@@ -1,9 +1,5 @@
 int main(string[] args) {
-    if(true) {
-        break;
-    } else {
-        break;
-    }
+    fuzz(true, 0, "testString");
 }
 
 myInt[] buzz() {
@@ -11,5 +7,5 @@ myInt[] buzz() {
 }
 
 fuzz(bool b, int k, myType mt) {
-    string test = "wasd";
+    buzz();
 }
