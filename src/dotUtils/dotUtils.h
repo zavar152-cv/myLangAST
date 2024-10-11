@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <antlr3.h>
 #include <stdbool.h>
+#include "grammar/ast/myAst.h"
 
 #define FILE_ERROR -1
 
@@ -17,8 +18,12 @@ void destroyDotNodeTree(DotNode* root);
 
 DotNode* createDotTreeFromAntlrTree(pANTLR3_BASE_TREE root, uint64_t layer, uint64_t *id, bool debug);
 
+DotNode* createDotTreeFromMyTree(MyAstNode *root, uint64_t layer, uint64_t *id, bool debug);
+
 void writeTreeToDot(FILE *file, DotNode* root);
 
 int generateDotFile(DotNode* root, const char *filename);
 
 int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree, const char *filename, bool debug);
+
+int generateDotFileFromMyTree(MyAstNode *tree, const char *filename, bool debug);

@@ -1,17 +1,15 @@
-#include "MyLangLexer.h"
-#include "MyLangParser.h"
+#include "ast/myAst.h"
 #include "errorsUtils/errorUtils.h"
 #include <stdbool.h>
 
 typedef struct MyLangResult {
-    pANTLR3_BASE_TREE tree;
+    MyAstNode *tree;
     ErrorContext errorContext;
-    pMyLangLexer lex;
-    pANTLR3_COMMON_TOKEN_STREAM tokens;
-    pMyLangParser parser;
     bool isValid;
 } MyLangResult;
 
-void parseMyLang(MyLangResult *result, pANTLR3_INPUT_STREAM input);
+void parseMyLangFromFile(MyLangResult *result, char *filename, bool debug);
+
+void parseMyLangFromText(MyLangResult *result, const char *text, bool debug);
 
 void destroyMyLangResult(MyLangResult *result);

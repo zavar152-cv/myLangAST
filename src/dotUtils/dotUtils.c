@@ -35,40 +35,8 @@ char *removeQuotes(const char *str) {
   return strndup(str, length);
 }
 
-const char *postProcessingNodeToken(const char *tokenText) {
-  if (strcmp(tokenText, "=") == 0) {
-    return "ASSIGN";
-  } else if (strcmp(tokenText, "+") == 0) {
-    return "PLUS";
-  } else if (strcmp(tokenText, "-") == 0) {
-    return "MINUS";
-  } else if (strcmp(tokenText, "*") == 0) {
-    return "MUL";
-  } else if (strcmp(tokenText, "/") == 0) {
-    return "DIV";
-  } else if (strcmp(tokenText, "%") == 0) {
-    return "MOD";
-  } else if (strcmp(tokenText, "==") == 0) {
-    return "EQ";
-  } else if (strcmp(tokenText, "!=") == 0) {
-    return "NEQ";
-  } else if (strcmp(tokenText, "<") == 0) {
-    return "LE";
-  } else if (strcmp(tokenText, ">") == 0) {
-    return "GR";
-  } else if (strcmp(tokenText, "<=") == 0) {
-    return "LE_EQ";
-  } else if (strcmp(tokenText, ">=") == 0) {
-    return "GR_EQ";
-  } else if (strcmp(tokenText, ",") == 0) {
-    return "COMMA";
-  } else {
-    return tokenText;
-  }
-}
-
 DotNode *createDotTreeFromAntlrTree(pANTLR3_BASE_TREE root, uint64_t layer,
-                                   uint64_t *id, bool debug) {
+                                    uint64_t *id, bool debug) {
   if (root == NULL) {
     return NULL;
   }
@@ -107,6 +75,39 @@ DotNode *createDotTreeFromAntlrTree(pANTLR3_BASE_TREE root, uint64_t layer,
   return newNode;
 }
 
+DotNode *createDotTreeFromMyTree(MyAstNode *root, uint64_t layer, uint64_t *id,
+                                 bool debug) {
+  if (root == NULL) {
+    return NULL;
+  }
+
+  uint64_t currentId = (*id)++;
+
+  if (debug) {
+    for (uint32_t i = 0; i < layer; i++) {
+      printf("  ");
+    }
+    char *tokenText = removeQuotes(root->label);
+    const char *nodeName = postProcessingNodeToken(tokenText);
+    printf("node %s_%lu [label=\"%s\"]", nodeName, currentId, tokenText);
+    printf("\n");
+    free(tokenText);
+  }
+
+  char *label = removeQuotes(root->label);
+
+  DotNode *newNode =
+      newDotNode(currentId, (const char *)label, root->childCount);
+
+  free(label);
+
+  for (uint32_t i = 0; i < root->childCount; i++) {
+    newNode->children[i] = createDotTreeFromMyTree(root->children[i], layer + 1, id, debug);
+  }
+
+  return newNode;
+}
+
 void writeTreeToDot(FILE *file, DotNode *root) {
   if (root == NULL) {
     return;
@@ -137,8 +138,8 @@ int generateDotFile(DotNode *root, const char *filename) {
   return 0;
 }
 
-int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree,
-                                  const char *filename, bool debug) {
+int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree, const char *filename,
+                                 bool debug) {
   DotNode *dotTree = NULL;
   uint64_t id = 0;
 
@@ -148,6 +149,18 @@ int generateDotFileFromAntlrTree(pANTLR3_BASE_TREE tree,
   }
 
   dotTree = createDotTreeFromAntlrTree(tree, 0, &id, debug);
+  int err = generateDotFile(dotTree, filename);
+
+  destroyDotNodeTree(dotTree);
+  return err;
+}
+
+int generateDotFileFromMyTree(MyAstNode *tree, const char *filename,
+                              bool debug) {
+  DotNode *dotTree = NULL;
+  uint64_t id = 0;
+
+  dotTree = createDotTreeFromMyTree(tree, 0, &id, debug);
   int err = generateDotFile(dotTree, filename);
 
   destroyDotNodeTree(dotTree);

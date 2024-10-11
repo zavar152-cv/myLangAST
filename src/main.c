@@ -1,4 +1,3 @@
-#include <antlr3.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -58,24 +57,20 @@ int main(int argc, char *argv[]) {
 
   argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
-  pANTLR3_UINT8 filename = (pANTLR3_UINT8)arguments.inputFile;
-
   MyLangResult result;
-  pANTLR3_INPUT_STREAM input = antlr3FileStreamNew(filename, ANTLR3_ENC_8BIT);
-  parseMyLang(&result, input);
+  parseMyLangFromFile(&result, arguments.inputFile, arguments.debug);
 
   if (!result.isValid) {
     printErrors(&result.errorContext);
   } 
 
-  int err = generateDotFileFromAntlrTree(result.tree, arguments.outputFile, arguments.debug);
+  int err = generateDotFileFromMyTree(result.tree, arguments.outputFile, arguments.debug);
 
   if (err == FILE_ERROR) {
     fprintf(stderr, "Error opening file %s for writing.\n", arguments.outputFile);
   }
   
   destroyMyLangResult(&result);
-  input->close(input);
 
   return 0;
 }
