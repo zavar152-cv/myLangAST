@@ -8,9 +8,12 @@ typedef struct __attribute__((packed)) MyAstNode {
   struct MyAstNode **children;
   uint32_t childCount;
   const char *label;
+  uint32_t line;
+  uint32_t pos;
+  bool isImaginary;
 } MyAstNode;
 
-MyAstNode *newMyAstNode(const char *label, uint32_t childCount);
+MyAstNode *newMyAstNode(const char *label, uint32_t childCount, uint32_t line, uint32_t pos, bool isImaginary);
 
 void destroyMyAstNodeTree(MyAstNode *root);
 
