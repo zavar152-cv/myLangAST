@@ -55,7 +55,6 @@ tokens {
     DO_WHILE;
     IF;
     ELSE;
-    ATOM;
 }
 
 @header {
