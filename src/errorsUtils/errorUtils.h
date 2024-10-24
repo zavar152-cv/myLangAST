@@ -1,3 +1,5 @@
+#pragma once
+
 #include <antlr3.h>
 
 #define MAX_ERRORS 50

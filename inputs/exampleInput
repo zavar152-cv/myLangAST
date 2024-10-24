@@ -2,4 +2,16 @@ int main(string[] args) {
     int sampleInt;
     sampleInt = 1;
     bool sampleBool = true;
+    a[1];
+    a;
+    a();
+    true;
+    1;
+    1+1;
+    "str";
+    if (true) {
+        
+    }
+    byte[,][,,] a;
+    a[][];
 }
