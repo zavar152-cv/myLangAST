@@ -189,4 +189,30 @@ digraph Tree {
     node_93 [label="IDENTIFIER"]
     node_93 -> node_94;
     node_94 [label="a"]
+    node_16 -> node_95;
+    node_95 [label="VAR"]
+    node_95 -> node_96;
+    node_96 [label="TYPEREF"]
+    node_96 -> node_97;
+    node_97 [label="BUILTIN_TYPE"]
+    node_97 -> node_98;
+    node_98 [label="bool"]
+    node_96 -> node_99;
+    node_99 [label="ARRAY"]
+    node_96 -> node_100;
+    node_100 [label="TYPEREF"]
+    node_100 -> node_101;
+    node_101 [label="BUILTIN_TYPE"]
+    node_101 -> node_102;
+    node_102 [label="int"]
+    node_100 -> node_103;
+    node_103 [label="ARRAY"]
+    node_95 -> node_104;
+    node_104 [label="IDENTIFIER"]
+    node_104 -> node_105;
+    node_105 [label="k"]
+    node_95 -> node_106;
+    node_106 [label="INIT"]
+    node_106 -> node_107;
+    node_107 [label="k"]
 }
